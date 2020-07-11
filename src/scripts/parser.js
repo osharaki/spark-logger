@@ -35,3 +35,5 @@ function parseEntries(entries) {
     console.log(entriesParsed);
     return entriesParsed;
 }
+
+export default parseEntries;
