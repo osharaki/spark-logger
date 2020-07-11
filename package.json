@@ -19,7 +19,8 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "testw": "jest --watch"
   },
   "author": "",
   "license": "ISC"
