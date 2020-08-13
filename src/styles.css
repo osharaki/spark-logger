@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Asap, sans-serif;
+}
+
+.container {
+    margin: 5px;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+}
+
+textarea {
+    resize: none;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.parsedItems {
+    display: inline-block;
+}
