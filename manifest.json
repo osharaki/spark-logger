@@ -3,17 +3,29 @@
     "version": "1.0",
     "description": "Converts your food log from text to Sparkpeople entries using your favorites",
     "permissions": [
+        "activeTab",
         "declarativeContent",
         "storage"
     ],
     "background": {
         "scripts": [
-            "background.js"
+            "background.js",
+            "src/scripts/parser.js"
         ],
         "persistent": false
     },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
     "page_action": {
-        "default_popup": "popup.html",
+        "default_popup": "src/popup.html",
         "default_icon": {
             "16": "images/get_started16.png",
             "32": "images/get_started32.png",
