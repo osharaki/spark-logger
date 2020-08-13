@@ -32,7 +32,7 @@ function parseEntries(entries, isItemAmount) {
             }
         }
         // This null element is used for warning in the UI
-        if(lines.length !== entriesParsed.length)
+        if (lines.length !== entriesParsed.length)
             entriesParsed.push(null);
     }
 
@@ -45,4 +45,11 @@ function removeWrappingSpaces(literal) {
     return literal.replace(/ +$/m, "").replace(/^ +/m, "");
 }
 
-export { removeWrappingSpaces, parseEntries };
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.msg == "User Input") {
+        console.log(`Parser.js received ${request.data}`);
+        console.log(parseEntries(request.data, true));
+    }
+})
+
+// export { removeWrappingSpaces, parseEntries };
