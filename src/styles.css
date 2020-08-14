@@ -5,7 +5,7 @@
     font-family: Asap, sans-serif;
 }
 
-.container {
+#containerMain {
     margin: 5px;
     padding: 4px;
     display: flex;
@@ -16,8 +16,4 @@ textarea {
     resize: none;
     display: inline-block;
     margin-right: 5px;
-}
-
-.parsedItems {
-    display: inline-block;
 }

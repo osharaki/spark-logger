@@ -20,7 +20,8 @@
                 "*://*/*"
             ],
             "js": [
-                "content.js"
+                "content.js",
+                "src/popup.js"
             ]
         }
     ],
