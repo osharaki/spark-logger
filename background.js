@@ -12,7 +12,5 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-});
 // TODO: remove console logs
 // TODO: navigate automatically to Favourites
