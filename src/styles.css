@@ -15,5 +15,17 @@
 textarea {
     resize: none;
     display: inline-block;
+    margin-top: 16px;
     margin-right: 5px;
+}
+
+th {
+    text-align: left;
+    min-width: 60px;
+}
+
+/* not working */
+
+tr {
+    margin-bottom: 30px;
 }

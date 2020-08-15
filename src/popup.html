@@ -5,11 +5,18 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <!-- TODO: Add toggle button for isItemAmount -->
-<!-- TODO: Display parsed entries in tabular form -->
+<!-- TODO: Add spacing between parsed entry rows -->
+<!-- TODO: textarea needs to expand as I type on new lines -->
 
 <body style="min-width: 300px;">
     <div id="containerMain">
         <textarea id="textarea" placeholder="Insert each entry on a separate line.."></textarea>
+        <table id="parsedEntries">
+            <tr>
+                <th>Item</th>
+                <th>Amount</th>
+            </tr>
+        </table>
     </div>
     <script src="popup.js"></script>
 </body>
