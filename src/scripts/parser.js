@@ -4,7 +4,6 @@ function parseEntries(entries, isItemAmount) {
     // TODO: allow for entering unit, e.g. 1 [tbsp] honey
     // TODO: add check to warn about inconsistent item-amount placement
     // TODO: warn about foods not found in favorites
-    // TODO: GUI - display parsed entries neatly and allow user to make changes
     // TODO: GUI - entries not found should be marked in display (live update)
     // TODO: potato and sweet potato are matched together
 
