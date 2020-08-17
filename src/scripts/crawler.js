@@ -2,7 +2,6 @@ function findFavs(entries) {
     // https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors
     // https://stackoverflow.com/questions/6991494/javascript-getelementbyid-based-on-a-partial-string
     // https://stackoverflow.com/questions/6061760/document-getelementbyid-regex
-    // TODO: navigate to favorites tab automatically in the beginning
     const favs = document.querySelectorAll('[id^="fav_line"]');
     const matchingElements = [];
     for (let fav of favs) {
