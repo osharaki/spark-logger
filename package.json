@@ -2,22 +2,26 @@
   "name": "sparkpeople_plugin",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/popup.html",
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@material/button": "^7.0.0",
+    "@material/switch": "^7.0.0"
+  },
   "devDependencies": {
     "cpy-cli": "^3.1.1",
     "jest": "^26.1.0",
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.10"
   },
   "scripts": {
     "test": "jest",
     "testw": "jest --watch",
     "clean": "rm -rf dist && cpy manifest.json dist && cpy images/* dist/images",
     "predev": "npm run clean",
-    "dev": "parcel src/popup.html background.js src/scripts/parser.js src/scripts/crawler.js"
+    "dev": "parcel src/popup.html src/background.js src/scripts/parser.js src/scripts/crawler.js"
   },
   "author": "",
   "license": "ISC"
