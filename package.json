@@ -2,26 +2,22 @@
   "name": "sparkpeople_plugin",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "@babel/polyfill": "^7.10.4"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.10.4",
-    "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
-    "babel-loader": "^8.1.0",
+    "cpy-cli": "^3.1.1",
     "jest": "^26.1.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    "parcel-bundler": "^1.12.4"
   },
   "scripts": {
     "test": "jest",
-    "testw": "jest --watch"
+    "testw": "jest --watch",
+    "clean": "rm -rf dist && cpy manifest.json dist && cpy images/* dist/images",
+    "predev": "npm run clean",
+    "dev": "parcel src/popup.html background.js src/scripts/parser.js src/scripts/crawler.js"
   },
   "author": "",
   "license": "ISC"
