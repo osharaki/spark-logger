@@ -3,12 +3,28 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
 </head>
 <!-- TODO: Add toggle button for isItemAmount -->
 <!-- TODO: Add spacing between parsed entry rows -->
 <!-- TODO: textarea needs to expand as I type on new lines -->
 
 <body style="min-width: 300px;">
+    <div class="mdc-touch-target-wrapper">
+        <button class="mdc-button mdc-button--touch">
+            <div class="mdc-button__ripple"></div>
+            <span class="mdc-button__label">My Accessible Button</span>
+            <div class="mdc-button__touch"></div>
+        </button>
+    </div>
+    <div class="mdc-switch">
+        <div class="mdc-switch__track"></div>
+        <div class="mdc-switch__thumb-underlay">
+            <div class="mdc-switch__thumb"></div>
+            <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch"
+                aria-checked="false">
+        </div>
+    </div>
     <div id="containerMain">
         <textarea id="textarea" placeholder="Insert each entry on a separate line.."></textarea>
         <table id="parsedEntries">
@@ -19,6 +35,7 @@
         </table>
     </div>
     <script src="popup.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
