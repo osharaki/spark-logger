@@ -2,4 +2,5 @@ node_modules
 dist
 test/test_ideas.txt
 .vscode
+.cache
 notes.txt
