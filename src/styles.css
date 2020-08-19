@@ -17,6 +17,8 @@ textarea {
     display: inline-block;
     margin-top: 16px;
     margin-right: 5px;
+    line-height: 1.5em;
+    min-height: calc(6em + 2px); /* 2px to account for border*/
 }
 
 th {
