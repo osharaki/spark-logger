@@ -1,0 +1,12 @@
+@use "@material/switch";
+@include switch.core-styles;
+
+.mdc-switch {
+    @include switch.ripple-states-opacity(
+        (
+            "focus": 0,
+            "hover": 0,
+            "press": 0,
+        )
+    );
+}
