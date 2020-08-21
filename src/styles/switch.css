@@ -1,3 +1,17 @@
+/* https://www.w3schools.com/howto/howto_css_switch.asp */
+
+:root {
+    --slider-height: 34;
+    --slider-width: 60px;
+    --slider-border-radius: 34px;
+    --thumb-width: 26px;
+    --thumb-height: 26px;
+    --thumb-pos-left: 4px;
+    --thumb-pos-bottom: 4px;
+    --input-blur-radius: 1px;
+    --slider-new-height: 20;
+}
+
 /* Tooltip text */
 
 .tooltip .tooltiptext {
@@ -17,4 +31,77 @@
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
+}
+
+#switch-container {
+    position: absolute;
+    left: 8px;
+    top: 5px;
+}
+
+/* The switch - the box around the slider */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: calc((var(--slider-width) * var(--slider-new-height)) / var(--slider-height));
+    height: calc(var(--slider-new-height) * 1px);
+}
+
+/* Hide default HTML checkbox */
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: calc((var(--thumb-height) * var(--slider-new-height)) / var(--slider-height));
+    width: calc((var(--thumb-width) * var(--slider-new-height)) / var(--slider-height));
+    left: calc((var(--thumb-pos-left) * var(--slider-new-height)) / var(--slider-height));
+    bottom: calc((var(--thumb-pos-bottom) * var(--slider-new-height)) / var(--slider-height));
+    background-color: white;
+    -webkit-transition: .2s;
+    transition: .2s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 calc((var(--input-blur-radius) * var(--slider-new-height)) / var(--slider-height)) #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(calc((var(--thumb-width) * var(--slider-new-height)) / var(--slider-height)));
+    -ms-transform: translateX(calc((var(--thumb-width) * var(--slider-new-height)) / var(--slider-height)));
+    transform: translateX(calc((var(--thumb-width) * var(--slider-new-height)) / var(--slider-height)));
+}
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: calc((var(--slider-border-radius) * var(--slider-new-height)) / var(--slider-height));
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
