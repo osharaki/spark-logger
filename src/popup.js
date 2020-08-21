@@ -8,10 +8,8 @@ tr_headers.appendChild(th_item);
 tr_headers.appendChild(th_amount);
 
 const textArea = document.getElementById("textarea");
-import { MDCSwitch } from '@material/switch';
-const entryOrderSwitch = document.querySelector('.mdc-switch')
-const switchControl = new MDCSwitch(document.querySelector('.mdc-switch'));
-textarea.placeholder = switchControl.checked ? "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3&#10..." : "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n...";
+const entryOrderSwitch = document.getElementById('checkbox')
+textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n..." : "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n...";
 
 textArea.oninput = () => {
     // https://stackoverflow.com/questions/7745741/auto-expanding-textarea
@@ -46,6 +44,5 @@ textArea.oninput = () => {
 
 
 entryOrderSwitch.onclick = () => {
-    console.log(`Switch on: ${switchControl.checked}`);
-    textarea.placeholder = switchControl.checked ? "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n..." : "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n...";
+    textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n..." : "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n...";
 }
