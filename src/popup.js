@@ -20,13 +20,11 @@ textArea.oninput = () => {
     table_parsedEntries.innerHTML = '';
     table_parsedEntries.appendChild(tr_headers);
     const content = textArea.value;
-    console.log(content);
-    chrome.runtime.sendMessage({ msg: "User Input", data: content }, (response) => {
+    chrome.runtime.sendMessage({ msg: "User Input", data: content, isItemAmount: !entryOrderSwitch.checked }, (response) => {
         if (response) {
             if (response.data) {
                 for (const entry of response.data) {
                     if (entry) {
-                        console.log(entry);
                         const tr_parsedEntry = document.createElement('tr');
                         const td_parsedItem = document.createElement('td');
                         td_parsedItem.appendChild(document.createTextNode(`${entry.item}`));
@@ -42,7 +40,11 @@ textArea.oninput = () => {
     });
 };
 
-
+const textAreaInputEvent = new Event('input', {
+    bubbles: true,
+    cancelable: true,
+})
 entryOrderSwitch.onclick = () => {
     textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n..." : "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n...";
+    textArea.dispatchEvent(textAreaInputEvent); // Triggers a "fake" input event whenever the switch is toggled
 }

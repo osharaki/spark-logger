@@ -46,9 +46,7 @@ function removeWrappingSpaces(literal) {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.msg == "User Input") {
-        console.log(`Parser.js received ${request.data}`);
-        const parsedEntries = parseEntries(request.data, true);
-        console.log(parsedEntries);
+        const parsedEntries = parseEntries(request.data, request.isItemAmount);
         sendResponse({ sender: "parser.js", data: parsedEntries });
     }
 })
