@@ -6,10 +6,7 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "@material/button": "^7.0.0",
-    "@material/switch": "^7.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "cpy-cli": "^3.1.1",
     "jest": "^26.1.0",
