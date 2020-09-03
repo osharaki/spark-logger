@@ -50,5 +50,3 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({ sender: "parser.js", data: parsedEntries });
     }
 })
-
-// export { removeWrappingSpaces, parseEntries };
