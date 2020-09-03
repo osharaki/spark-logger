@@ -20,7 +20,8 @@
                 "*://*/*"
             ],
             "js": [
-                "popup.js"
+                "popup.js",
+                "scripts/crawler.js"
             ]
         }
     ],
