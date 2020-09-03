@@ -44,5 +44,3 @@ function fillFavs(foundElements) {
     searchFavInput.value = "gjkdfgksjdg";
     searchFavInput.dispatchEvent(new Event("keyup")); // https://stackoverflow.com/questions/136617/how-do-i-programmatically-force-an-onchange-event-on-an-input
 }
-
-export { findFavs, fillFavs }
