@@ -5,9 +5,13 @@
     font-family: Asap, sans-serif;
 }
 
-#containerMain {
+body {
     margin: 5px;
-    padding: 4px;
+}
+
+#containerMain {
+    /* margin: 5px; */
+    /* padding: 4px; */
     display: flex;
     flex-direction: row;
 }
@@ -18,7 +22,8 @@ textarea {
     margin-top: 16px;
     margin-right: 5px;
     line-height: 1.5em;
-    min-height: calc(6em + 2px); /* 2px to account for border*/
+    min-height: calc(6em + 2px);
+    /* 2px to account for border*/
 }
 
 th {
