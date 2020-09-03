@@ -44,3 +44,12 @@ function fillFavs(foundElements) {
     searchFavInput.value = "gjkdfgksjdg";
     searchFavInput.dispatchEvent(new Event("keyup")); // https://stackoverflow.com/questions/136617/how-do-i-programmatically-force-an-onchange-event-on-an-input
 }
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log(request);
+    // if (request.msg == "Log Entries") {
+    //     console.log('message received by crawler')
+    //     const foundElements = findFavs(request.data);
+    //     fillFavs(foundElements);
+    // }
+})
