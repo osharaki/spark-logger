@@ -4,7 +4,7 @@ chrome.runtime.onInstalled.addListener(() => {
         console.log('removed rules');
         chrome.declarativeContent.onPageChanged.addRules([{
             conditions: [new chrome.declarativeContent.PageStateMatcher({
-                pageUrl: { urlMatches: '.*' },
+                pageUrl: { urlMatches: '.*sparkpeople.com/myspark/nutrition.asp' },
             })
             ],
             actions: [new chrome.declarativeContent.ShowPageAction()]

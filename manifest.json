@@ -3,7 +3,7 @@
     "version": "1.0",
     "description": "Converts your food log from text to Sparkpeople entries using your favorites",
     "permissions": [
-        "activeTab",
+        "tabs",
         "declarativeContent",
         "storage"
     ],
@@ -17,7 +17,7 @@
     "content_scripts": [
         {
             "matches": [
-                "*://*/*"
+                "*://*.sparkpeople.com/myspark/nutrition.asp"
             ],
             "js": [
                 "popup.js",
