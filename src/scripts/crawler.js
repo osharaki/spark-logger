@@ -31,6 +31,11 @@ function findFavs(entries) {
 }
 
 function fillFavs(foundElements) {
+    // Clearing search bar to enable searching for new values
+    const searchFavInput = foundElements[foundElements.length - 1];
+    searchFavInput.value = "";
+    searchFavInput.dispatchEvent(new Event("keyup"));
+
     for (let foundElement of foundElements.slice(0, -1)) {
         foundElement.checkbox.checked = true;
         for (let option of foundElement.options) {
@@ -40,16 +45,15 @@ function fillFavs(foundElements) {
         }
         foundElement.textField.value = foundElement.amount;
     }
-    const searchFavInput = foundElements[foundElements.length - 1];
-    searchFavInput.value = "gjkdfgksjdg";
+    searchFavInput.value = "Feel free to log more items!";
     searchFavInput.dispatchEvent(new Event("keyup")); // https://stackoverflow.com/questions/136617/how-do-i-programmatically-force-an-onchange-event-on-an-input
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log(request);
-    // if (request.msg == "Log Entries") {
-    //     console.log('message received by crawler')
-    //     const foundElements = findFavs(request.data);
-    //     fillFavs(foundElements);
-    // }
+    if (request.msg == "Log Entries") {
+        console.log('Message received by crawler');
+        const foundElements = findFavs(request.data);
+        fillFavs(foundElements);
+    }
 })
