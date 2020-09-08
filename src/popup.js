@@ -14,7 +14,7 @@ const entryOrderSwitch = document.getElementById('checkbox')
 textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n..." : "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n...";
 const logButton = document.getElementsByTagName('button')[0];
 logButton.disabled = true; // button is disabled by default
-const parsedEntries = []; // Used by button for finally logging the entries
+let parsedEntries = []; // Used by button for finally logging the entries
 
 textArea.oninput = () => {
     // https://stackoverflow.com/questions/7745741/auto-expanding-textarea
@@ -22,6 +22,7 @@ textArea.oninput = () => {
     textarea.style.height = ""; /* Reset the height*/
     textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + 2 + "px"; // the 2 is added to account for the top and bottom borders (1px each)
 
+    parsedEntries = []; // Otherwise, typing out entries (as opposed to copying and pasting them) will register a new entry for each digit in the amount. E.g. speise 250 => [{amount: "2", item: "speise"}, {amount: "25", item: "speise"}, {amount: "250", item: "speise"}] only the first of which (i.e. {amount: "2", item: "speise"}) will actually be found in favs.
     logButton.disabled = true; // button is disabled by default
     table_parsedEntries.innerHTML = '';
     table_parsedEntries.appendChild(tr_headers);
