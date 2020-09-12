@@ -15,6 +15,7 @@ textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2 
 const logButton = document.getElementsByTagName('button')[0];
 logButton.disabled = true; // button is disabled by default
 let parsedEntries = []; // Used by button for finally logging the entries
+const div_warning = document.getElementById("warning");
 
 textArea.oninput = () => {
     // https://stackoverflow.com/questions/7745741/auto-expanding-textarea
@@ -27,23 +28,35 @@ textArea.oninput = () => {
     table_parsedEntries.innerHTML = '';
     table_parsedEntries.appendChild(tr_headers);
     const content = textArea.value;
+
+    div_warning.className = "";
+
     chrome.runtime.sendMessage({ msg: "User Input", data: content, isItemAmount: !entryOrderSwitch.checked }, (response) => {
         if (response) {
             if (response.data) {
                 for (const entry of response.data) {
-                    if (entry) {
-                        parsedEntries.push(entry);
-                        logButton.disabled = false; // button enabled as soon as there's a valid entry
-                        const tr_parsedEntry = document.createElement('tr');
-                        const td_parsedItem = document.createElement('td');
-                        td_parsedItem.appendChild(document.createTextNode(`${entry.item}`));
-                        const td_parsedAmount = document.createElement('td');
-                        td_parsedAmount.appendChild(document.createTextNode(`${entry.amount}`));
-                        tr_parsedEntry.appendChild(td_parsedItem);
-                        tr_parsedEntry.appendChild(td_parsedAmount);
-                        table_parsedEntries.appendChild(tr_parsedEntry);
-                    }
+                    parsedEntries = response.data;
+
+                    logButton.disabled = false; // button enabled as soon as there's a valid entry
+                    const tr_parsedEntry = document.createElement('tr');
+                    const td_parsedItem = document.createElement('td');
+                    td_parsedItem.appendChild(document.createTextNode(`${entry.item}`));
+                    const td_parsedAmount = document.createElement('td');
+                    td_parsedAmount.appendChild(document.createTextNode(`${entry.amount}`));
+                    tr_parsedEntry.appendChild(td_parsedItem);
+                    tr_parsedEntry.appendChild(td_parsedAmount);
+                    table_parsedEntries.appendChild(tr_parsedEntry);
                 }
+
+                // Check if all entries were successfully parsed and if not, issue warning
+                if ((content.match(/\n/g) || '').length > response.data.length) { // The regex counts the number of lines in the textarea. ' ' ensures that this number is always greater than 0.
+                    console.log('warn user about unparsed entries');
+                    div_warning.className = "parse-warning";
+                }
+                else {
+                    div_warning.className = "";
+                }
+                updateWarning();
             }
         }
     });
@@ -63,4 +76,13 @@ const textAreaInputEvent = new Event('input', {
 entryOrderSwitch.onclick = () => {
     textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n..." : "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n...";
     textArea.dispatchEvent(textAreaInputEvent); // Triggers a "fake" input event whenever the switch is toggled
+}
+
+function updateWarning() {
+    if (div_warning.classList.contains('parse-warning'))
+        div_warning.innerText = "parse warning";
+    else if (div_warning.classList.contains('fav-warning'))
+        div_warning.innerText = "fav warning";
+    else
+        div_warning.innerText = "";
 }
