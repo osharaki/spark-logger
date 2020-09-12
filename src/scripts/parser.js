@@ -30,9 +30,6 @@ function parseEntries(entries, isItemAmount) {
                         : entriesParsed.push({ amount: null, item: removeWrappingSpaces(matches[0]) });
             }
         }
-        // This null element is used for warning in the UI
-        if (lines.length !== entriesParsed.length)
-            entriesParsed.push(null);
     }
 
     // console.log(entriesParsed);
