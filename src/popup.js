@@ -63,7 +63,17 @@ textArea.oninput = () => {
 };
 
 logButton.onclick = () => {
-    chrome.runtime.sendMessage({ msg: "Log Entries", data: parsedEntries });
+    chrome.runtime.sendMessage({ msg: "Log Entries", data: parsedEntries }, (response) => {
+        if (response) {
+            if (response.data) {
+                if (response.data.length !== parsedEntries.length) {
+                    console.log('warn user about unfound favs');
+                    div_warning.className = "fav-warning";
+                    updateWarning();
+                }
+            }
+        }
+    });
     textArea.value = '';
     textArea.dispatchEvent(textAreaInputEvent);
 }

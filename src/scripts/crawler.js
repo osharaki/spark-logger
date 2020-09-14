@@ -55,5 +55,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         console.log('Message received by crawler');
         const foundElements = findFavs(request.data);
         fillFavs(foundElements);
+        sendResponse({ sender: "crawler.js", data: foundElements });
     }
-})
+});
