@@ -49,7 +49,7 @@ textArea.oninput = () => {
                 }
 
                 // Check if all entries were successfully parsed and if not, issue warning
-                if ((content.match(/\n/g) || '').length > response.data.length) { // The regex counts the number of lines in the textarea. ' ' ensures that this number is always greater than 0.
+                if ((content.match(/\n/g) || '').length + 1 > response.data.length) { // The regex counts the number of lines in the textarea. ' ' ensures that this number is always greater than 0.
                     console.log('warn user about unparsed entries');
                     div_warning.className = "parse-warning";
                 }
