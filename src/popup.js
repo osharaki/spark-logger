@@ -77,7 +77,7 @@ logButton.onclick = () => {
                 }
             }
         });
-        // Has to be inside this callback to guarantee that it gets exectutes after sendMessage is called. If placed outside the callback, it doesn't wait for chrome.tabs.query to finish and executes before sendMessage is called, in the process clearing parsedEntries and so an empty array is sent to crawler.js. My guess is that this is because chrome.tabs.query is asynchronous (although this isn't stated in the docs). One way to make these two lines independant of the callback is to find a way to make the call to chrome.tabs.query blocking.
+        // Has to be inside this callback to guarantee that it gets exectutes after sendMessage is called. If placed outside the callback, it doesn't wait for chrome.tabs.query to finish and executes before sendMessage is called, in the process clearing parsedEntries and so an empty array is sent to crawler.js. My guess is that this is because chrome.tabs.query is asynchronous (see: https://developer.chrome.com/extensions/overview#sync). One way to make these two lines independant of the callback is to find a way to make the call to chrome.tabs.query blocking.
         textArea.value = '';
         textArea.dispatchEvent(textAreaInputEvent);
     });
