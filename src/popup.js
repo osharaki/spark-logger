@@ -63,19 +63,24 @@ textArea.oninput = () => {
 };
 
 logButton.onclick = () => {
-    chrome.runtime.sendMessage({ msg: "Log Entries", data: parsedEntries }, (response) => {
-        if (response) {
-            if (response.data) {
-                if (response.data.length !== parsedEntries.length) {
-                    console.log('warn user about unfound favs');
-                    div_warning.className = "fav-warning";
-                    updateWarning();
+    console.log(parsedEntries);
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        console.log(parsedEntries);
+        chrome.tabs.sendMessage(tabs[0].id, { msg: "Log Entries", data: parsedEntries }, (response) => {
+            if (response) {
+                if (response.data) {
+                    if (response.data.length !== parsedEntries.length) {
+                        console.log('warn user about unfound favs');
+                        div_warning.className = "fav-warning";
+                        updateWarning();
+                    }
                 }
             }
-        }
+        });
+        // Has to be inside this callback to guarantee that it gets exectutes after sendMessage is called. If placed outside the callback, it doesn't wait for chrome.tabs.query to finish and executes before sendMessage is called, in the process clearing parsedEntries and so an empty array is sent to crawler.js. My guess is that this is because chrome.tabs.query is asynchronous (although this isn't stated in the docs). One way to make these two lines independant of the callback is to find a way to make the call to chrome.tabs.query blocking.
+        textArea.value = '';
+        textArea.dispatchEvent(textAreaInputEvent);
     });
-    textArea.value = '';
-    textArea.dispatchEvent(textAreaInputEvent);
 }
 
 const textAreaInputEvent = new Event('input', {
