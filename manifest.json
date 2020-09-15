@@ -20,7 +20,6 @@
                 "*://*.sparkpeople.com/myspark/nutrition.asp"
             ],
             "js": [
-                "popup.js",
                 "scripts/crawler.js"
             ]
         }
