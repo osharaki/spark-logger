@@ -17,13 +17,15 @@ body {
 }
 
 textarea {
+    --padding: 4px;
     resize: none;
     display: inline-block;
     margin-top: 16px;
     margin-right: 5px;
     line-height: 1.5em;
-    min-height: calc(6em + 2px);
-    /* 2px to account for border*/
+    padding: var(--padding);
+    min-height: calc(6em + 2px + var(--padding));
+    /* 2px to account for border + padding*/
 }
 
 th {
