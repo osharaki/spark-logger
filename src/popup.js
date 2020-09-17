@@ -32,9 +32,14 @@ textArea.oninput = () => {
     div_warning.className = "";
 
     chrome.runtime.sendMessage({ msg: "User Input", data: content, isItemAmount: !entryOrderSwitch.checked }, (response) => {
+        let parseError = false;
         if (response) {
             if (response.data) {
                 for (const entry of response.data) {
+                    if (!entry) { // a null element in parser.js's response indicates that one or more entries did not match the formatting rules
+                        parseError = true;
+                        continue;
+                    }
                     parsedEntries = response.data;
 
                     logButton.disabled = false; // button enabled as soon as there's a valid entry
@@ -48,13 +53,15 @@ textArea.oninput = () => {
                     table_parsedEntries.appendChild(tr_parsedEntry);
                 }
 
-                // Check if all entries were successfully parsed and if not, issue warning
-                if ((content.match(/\n/g) || '').length + 1 > response.data.length) { // The regex counts the number of lines in the textarea. ' ' ensures that this number is always greater than 0.
-                    console.log('warn user about unparsed entries');
-                    div_warning.className = "parse-warning";
-                }
-                else {
-                    div_warning.className = "";
+                if (parseError) {// Check if all entries were successfully parsed and if not, issue warning
+                    console.log('parseError');
+                    if ((content.match(/^.*$/gm) || '').length > response.data.length) { // The regex counts the number of lines in the textarea. ' ' ensures that this number is always greater than 0.
+                        console.log('warn user about unparsed entries');
+                        div_warning.className = "parse-warning";
+                    }
+                    else {
+                        div_warning.className = "";
+                    }
                 }
                 updateWarning();
             }

@@ -8,7 +8,7 @@ function parseEntries(entries, isItemAmount) {
     // TODO: potato and sweet potato are matched together
 
     const entriesParsed = [];
-    const lines = entries.match(/^.*$/gm);
+    const lines = entries.match(/^.*\n/gm); // an entry is only confirmed after pressing enter
     if (lines) {
         if (!isItemAmount) {
             // amount followed by item
