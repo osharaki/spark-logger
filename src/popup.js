@@ -55,7 +55,7 @@ textArea.oninput = () => {
 
                 if (parseError) {// Check if all entries were successfully parsed and if not, issue warning
                     console.log('parseError');
-                    if ((content.match(/^.*$/gm) || '').length > response.data.length) { // The regex counts the number of lines in the textarea. ' ' ensures that this number is always greater than 0.
+                    if ((content.match(/^.*$/gm) || '').length > response.data.length) { // The regex counts the number of lines in the textarea. '' prevents error in case content.match() returns undefined due to no matches.
                         console.log('warn user about unparsed entries');
                         div_warning.className = "parse-warning";
                     }
