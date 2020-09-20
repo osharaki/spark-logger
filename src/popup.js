@@ -1,5 +1,3 @@
-// TODO: texarea should preserve its content
-
 const table_parsedEntries = document.getElementById("parsedEntries");
 const tr_headers = document.createElement('tr');
 const th_item = document.createElement('th');

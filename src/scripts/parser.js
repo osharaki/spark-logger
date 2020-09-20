@@ -1,11 +1,6 @@
 function parseEntries(entries, isItemAmount) {
     // https://stackoverflow.com/questions/21711768/split-string-in-javascript-and-detect-line-break
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
-    // TODO: allow for entering unit, e.g. 1 [tbsp] honey
-    // TODO: add check to warn about inconsistent item-amount placement
-    // TODO: warn about foods not found in favorites
-    // TODO: GUI - entries not found should be marked in display (live update)
-    // TODO: potato and sweet potato are matched together
 
     const entriesParsed = [];
     const lines = entries.match(/^.*\n/gm); // an entry is only confirmed after pressing enter

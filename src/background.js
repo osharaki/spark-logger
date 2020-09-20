@@ -11,6 +11,3 @@ chrome.runtime.onInstalled.addListener(() => {
         }], () => console.log('added rules'));
     });
 });
-
-// TODO: remove console logs
-// TODO: navigate automatically to Favourites
