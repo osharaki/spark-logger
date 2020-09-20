@@ -50,11 +50,10 @@ function fillFavs(foundElements) {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log(request);
     if (request.msg == "Log Entries") {
-        console.log('Message received by crawler');
-        const foundElements = findFavs(request.data);
+        let foundElements = findFavs(request.data);
         fillFavs(foundElements);
+        foundElements = foundElements.filter(value => Object.keys(value).length !== 0); // removing empty objects from foundElements (for some reason findFavs always finds an extra empty object)
         sendResponse({ sender: "crawler.js", data: foundElements });
     }
 });

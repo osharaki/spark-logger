@@ -52,9 +52,7 @@ textArea.oninput = () => {
                 }
 
                 if (parseError) {// Check if all entries were successfully parsed and if not, issue warning
-                    console.log('parseError');
                     if ((content.match(/^.*$/gm) || '').length > response.data.length) { // The regex counts the number of lines in the textarea. '' prevents error in case content.match() returns undefined due to no matches.
-                        console.log('warn user about unparsed entries');
                         div_warning.className = "parse-warning";
                     }
                     else {
@@ -68,23 +66,22 @@ textArea.oninput = () => {
 };
 
 logButton.onclick = () => {
-    console.log(parsedEntries);
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        console.log(parsedEntries);
         chrome.tabs.sendMessage(tabs[0].id, { msg: "Log Entries", data: parsedEntries }, (response) => {
+            const isFavWarning = response.data.length !== parsedEntries.length; // Check has to be done here since parsedEntries becomes empty after clearing the text area
+
+            // Has to be inside this callback so as not to undo the fav-warning class assignment. If placed outside, it would execute before the response arrives. This is because chrome.tabs.query, like most other Chrome API methods, is asynchronous (see: https://developer.chrome.com/extensions/overview#sync).
+            textArea.value = '';
+            textArea.dispatchEvent(textAreaInputEvent);
             if (response) {
                 if (response.data) {
-                    if (response.data.length !== parsedEntries.length) {
-                        console.log('warn user about unfound favs');
+                    if (isFavWarning) {
                         div_warning.className = "fav-warning";
                         updateWarning();
                     }
                 }
             }
         });
-        // Has to be inside this callback to guarantee that it gets exectutes after sendMessage is called. If placed outside the callback, it doesn't wait for chrome.tabs.query to finish and executes before sendMessage is called, in the process clearing parsedEntries and so an empty array is sent to crawler.js. My guess is that this is because chrome.tabs.query is asynchronous (see: https://developer.chrome.com/extensions/overview#sync). One way to make these two lines independant of the callback is to find a way to make the call to chrome.tabs.query blocking.
-        textArea.value = '';
-        textArea.dispatchEvent(textAreaInputEvent);
     });
 }
 
@@ -100,9 +97,9 @@ entryOrderSwitch.onclick = () => {
 
 function updateWarning() {
     if (div_warning.classList.contains('parse-warning'))
-        div_warning.innerText = "parse warning";
+        div_warning.innerText = "Check input!";
     else if (div_warning.classList.contains('fav-warning'))
-        div_warning.innerText = "fav warning";
+        div_warning.innerText = "Check favorites!";
     else
         div_warning.innerText = "";
 }
