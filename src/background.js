@@ -11,3 +11,24 @@ chrome.runtime.onInstalled.addListener(() => {
         }], () => console.log('added rules'));
     });
 });
+
+// https://stackoverflow.com/questions/15798516/is-there-an-event-for-when-a-chrome-extension-popup-is-closed
+// https://stackoverflow.com/questions/25072940/event-when-chrome-popup-is-closed
+
+/* Load previous textarea content (if any) when user opens popup */
+chrome.runtime.onConnect.addListener((port) => {
+    console.log('Extension connected!');
+    chrome.storage.local.get(['textareaContent'], (result) => {
+        console.log(result.textareaContent)
+        if (result.textareaContent) {
+            chrome.runtime.sendMessage({ msg: "Load textarea content", data: result.textareaContent });
+        }
+    });
+
+    // https://stackoverflow.com/questions/39730493/chrome-extension-detect-when-popup-window-closes
+    port.onDisconnect.addListener(() => {
+        // console.log('Extension disconnected!');
+    })
+});
+
+

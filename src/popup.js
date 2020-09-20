@@ -1,3 +1,5 @@
+chrome.runtime.connect(); // allows subscribing to onConnect/onDisconnect events in background.js to detect when popup is opened/closed
+
 const table_parsedEntries = document.getElementById("parsedEntries");
 const tr_headers = document.createElement('tr');
 const th_item = document.createElement('th');
@@ -26,8 +28,9 @@ textArea.oninput = () => {
     table_parsedEntries.innerHTML = '';
     table_parsedEntries.appendChild(tr_headers);
     const content = textArea.value;
+    chrome.storage.local.set({ textareaContent: content }); // store textarea content
 
-    div_warning.className = "";
+    div_warning.className = ""; // reset warnings
 
     chrome.runtime.sendMessage({ msg: "User Input", data: content, isItemAmount: !entryOrderSwitch.checked }, (response) => {
         let parseError = false;
@@ -66,6 +69,7 @@ textArea.oninput = () => {
 };
 
 logButton.onclick = () => {
+    chrome.storage.local.set({ textareaContent: null }); // empty storage when user logs entries
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { msg: "Log Entries", data: parsedEntries }, (response) => {
             const isFavWarning = response.data.length !== parsedEntries.length; // Check has to be done here since parsedEntries becomes empty after clearing the text area
@@ -94,6 +98,15 @@ entryOrderSwitch.onclick = () => {
     textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n..." : "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n...";
     textArea.dispatchEvent(textAreaInputEvent); // Triggers a "fake" input event whenever the switch is toggled
 }
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request) {
+        if (request.msg == "Load textarea content") {
+            textArea.value = request.data;
+            textArea.dispatchEvent(textAreaInputEvent);
+        }
+    }
+});
 
 function updateWarning() {
     if (div_warning.classList.contains('parse-warning'))
