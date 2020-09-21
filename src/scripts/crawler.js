@@ -1,3 +1,5 @@
+import levenshtein from "js-levenshtein";
+
 function findFavs(entries) {
     // https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors
     // https://stackoverflow.com/questions/6991494/javascript-getelementbyid-based-on-a-partial-string
@@ -6,24 +8,31 @@ function findFavs(entries) {
     const matchingElements = [];
     for (let fav of favs) {
         const favText = fav.getElementsByClassName("np_tc2")[0].getElementsByTagName("label")[0].innerText;
+        let minDist = Infinity;
+        let mostSimilarElement = null;
         for (let entry of entries) {
             if (entry) {
                 if (entry.item && favText.toLowerCase().includes(entry.item.toLowerCase())) {
-                    const checkbox = fav.getElementsByClassName("np_tc1")[0].getElementsByTagName("input")[0];
-                    const select = fav.getElementsByClassName("np_tc4")[0].getElementsByTagName("select")[0];
-                    const options = select.getElementsByTagName("option");
-                    const textField = fav.getElementsByClassName("np_tc3")[0].getElementsByTagName("input")[0];
-                    matchingElements.push({
-                        checkbox: checkbox,
-                        select: select,
-                        options: options,
-                        textField: textField,
-                        amount: entry.amount
-                    })
-                    break;
+                    const dist = levenshtein(entry.item, favText); // choosing most similar match
+                    if (dist < minDist) {
+                        minDist = dist;
+                        const checkbox = fav.getElementsByClassName("np_tc1")[0].getElementsByTagName("input")[0];
+                        const select = fav.getElementsByClassName("np_tc4")[0].getElementsByTagName("select")[0];
+                        const options = select.getElementsByTagName("option");
+                        const textField = fav.getElementsByClassName("np_tc3")[0].getElementsByTagName("input")[0];
+                        mostSimilarElement = {
+                            checkbox: checkbox,
+                            select: select,
+                            options: options,
+                            textField: textField,
+                            amount: entry.amount
+                        };
+                    }
                 }
             }
         }
+        if (mostSimilarElement)
+            matchingElements.push(mostSimilarElement);
     }
     const searchFavInput = document.getElementsByClassName("tracker_search_fav_input")[0];
     matchingElements.push(searchFavInput);
