@@ -30,3 +30,7 @@ TBA
 
 ## Tests
 TBA
+
+## Notice of Non-Affiliation and Disclaimer
+Sparkpeople Logger is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Sparkpeople, Inc, or any of its subsidiaries or its affiliates.
+The name Sparkpeople as well as related names, marks, emblems and images are registered trademarks of their respective owners.
