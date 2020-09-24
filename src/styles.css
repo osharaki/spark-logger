@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Asap, sans-serif;
-    font-size: small;
+    /* font-size: small; */
 }
 
 body {
@@ -19,15 +19,16 @@ body {
 
 textarea {
     --padding: 4px;
+    --line-height: 1.2em;
     resize: none;
     display: inline-block;
     margin-top: 16px;
-    margin-right: 5px;
-    line-height: 1.5em;
+    line-height: var(--line-height);
     padding: var(--padding);
-    min-height: calc(6em + 2px + var(--padding));
-    /* 2px to account for border + padding*/
+    min-height: calc(calc(var(--line-height) * 4) + 2px + 4px + var(--padding));
+    /* 4 for the number of lines in the placeholder. 2px to account for border. 4px for some extra breathing space*/
     min-width: 250px;
+    font-family: 'Roboto', sans-serif;
 }
 
 table {
@@ -47,6 +48,8 @@ th {
 
 td {
     word-wrap: break-word;
+    font-family: 'Roboto', sans-serif;
+    font-size: small;
 }
 
 td:first-of-type {
