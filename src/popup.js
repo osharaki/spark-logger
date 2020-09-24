@@ -20,7 +20,7 @@ const div_warning = document.getElementById("warning");
 
 textArea.oninput = () => {
     // https://stackoverflow.com/questions/7745741/auto-expanding-textarea
-    var heightLimit = 300; /* unit is implicitly px */
+    var heightLimit = 200; /* unit is implicitly px */
     textarea.style.height = ""; /* Reset the height*/
     textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + 2 + "px"; // the 2 is added to account for the top and bottom borders (1px each)
 
