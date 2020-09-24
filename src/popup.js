@@ -10,6 +10,7 @@ tr_headers.appendChild(th_item);
 tr_headers.appendChild(th_amount);
 
 const textArea = document.getElementById("textarea");
+textArea.focus();
 const entryOrderSwitch = document.getElementById('checkbox')
 textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n..." : "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n...";
 const logButton = document.getElementsByTagName('button')[0];
