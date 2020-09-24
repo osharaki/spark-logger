@@ -3,11 +3,13 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Asap, sans-serif;
+    font-family: 'Roboto', sans-serif;
     /* font-size: small; */
 }
 
 body {
-    margin: 5px;
+    margin: 15px;
+    margin-top: 40px;
 }
 
 #containerMain {
@@ -44,6 +46,7 @@ th:first-child {
 th {
     text-align: left;
     min-width: 60px;
+    border-bottom: 1px solid #555;
 }
 
 td {
