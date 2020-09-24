@@ -1,0 +1,59 @@
+button {
+    display: inline-block;
+    padding: 0.7em 1.4em;
+    margin: 0 0.3em 0.3em 0;
+    border: 0;
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #FFFFFF;
+    background-color: #5280ff;
+    /* box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17); */
+    text-align: center;
+    position: relative;
+    width: 11em;
+}
+
+button:active {
+    top: 0.1em;
+}
+
+button:enabled {
+    box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+    background-color: #3369ff;
+    transition: box-shadow 1s ease, background-color 1s ease;
+}
+
+button:disabled {
+    box-shadow: none;
+    transition: box-shadow 1s ease, background-color 1s ease;
+}
+
+button:hover {
+    padding-right: 2em;
+    transition: padding 0.3s ease;
+}
+
+button:after {
+    content: ' \00bb';
+    opacity: 0;
+    position: absolute;
+    font-size: inherit;
+}
+
+button:hover:after {
+    content: ' \00bb';
+    position: relative;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+@media all and (max-width:30em) {
+    button {
+        display: block;
+        margin: 0.4em auto;
+    }
+}
