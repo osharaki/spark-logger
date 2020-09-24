@@ -1,4 +1,5 @@
 button {
+    cursor: pointer;
     display: inline-block;
     padding: 0.7em 1.4em;
     margin: 0 0.3em 0.3em 0;
@@ -10,32 +11,25 @@ button {
     text-transform: uppercase;
     font-weight: 400;
     color: #FFFFFF;
-    background-color: #5280ff;
-    /* box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17); */
+    background-color: #3369ff;
+    box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
     text-align: center;
     position: relative;
     width: 11em;
+    transition: box-shadow 1s ease, background-color 1s ease;
 }
 
 button:active {
     top: 0.1em;
 }
 
-button:enabled {
-    cursor: pointer;
-    box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
-    background-color: #3369ff;
-    transition: box-shadow 1s ease, background-color 1s ease;
-}
-
 button:disabled {
+    pointer-events: none;
     box-shadow: none;
-    transition: box-shadow 1s ease, background-color 1s ease;
+    background-color: #5280ff;
 }
 
 button:disabled span {
-    box-shadow: none;
-    transition: box-shadow 1s ease, background-color 1s ease;
     pointer-events: none;
 }
 
@@ -51,13 +45,8 @@ button span:after {
     position: absolute;
     opacity: 0;
     top: 0;
-    right: -15px;
+    right: -10px;
     transition: 0.3s;
-}
-
-button:hover:enabled {
-    padding-right: 2em;
-    transition: padding 0.3s ease;
 }
 
 button:hover:enabled span {
