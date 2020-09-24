@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Asap, sans-serif;
+    font-size: small;
 }
 
 body {
@@ -26,11 +27,30 @@ textarea {
     padding: var(--padding);
     min-height: calc(6em + 2px + var(--padding));
     /* 2px to account for border + padding*/
+    min-width: 250px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    padding-left: 30px;
+}
+
+th:first-child {
+    width: 80%;
 }
 
 th {
     text-align: left;
     min-width: 60px;
+}
+
+td {
+    word-wrap: break-word;
+}
+
+td:first-of-type {
+    padding-right: 10px;
 }
 
 /* not working */
