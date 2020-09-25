@@ -12,7 +12,7 @@ body {
     margin-top: 40px;
 }
 
-#containerMain {
+#container-main {
     /* margin: 5px; */
     /* padding: 4px; */
     display: flex;
@@ -33,14 +33,27 @@ textarea {
     font-family: 'Roboto', sans-serif;
 }
 
-table {
-    table-layout: fixed;
-    width: 100%;
+#table-container {
     padding-left: 30px;
 }
 
-th:first-child {
+#scroll-container {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#parsed-entries {
+    width: 100%;
+    table-layout: fixed;
+}
+
+
+#parsed-entries td:first-child {
     width: 80%;
+}
+
+#parsed-entries td:last-child {
+    text-align: right;
 }
 
 th {
@@ -49,14 +62,18 @@ th {
     border-bottom: 1px solid #555;
 }
 
-td {
+th:first-child {
+    width: 80%;
+}
+
+th:last-child {
+    text-align: right;
+}
+
+#parsed-entries td {
     word-wrap: break-word;
     font-family: 'Roboto', sans-serif;
     font-size: small;
-}
-
-td:first-of-type {
-    padding-right: 10px;
 }
 
 /* not working */

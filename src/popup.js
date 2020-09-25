@@ -1,13 +1,7 @@
 chrome.runtime.connect(); // allows subscribing to onConnect/onDisconnect events in background.js to detect when popup is opened/closed
 
-const table_parsedEntries = document.getElementById("parsedEntries");
-const tr_headers = document.createElement('tr');
-const th_item = document.createElement('th');
-th_item.appendChild(document.createTextNode('Item'));
-const th_amount = document.createElement('th');
-th_amount.appendChild(document.createTextNode('Amount'));
-tr_headers.appendChild(th_item);
-tr_headers.appendChild(th_amount);
+const table_container = document.getElementById("table-container");
+const table_parsedEntries = document.getElementById("parsed-entries");
 
 const textArea = document.getElementById("textarea");
 textArea.focus();
@@ -27,7 +21,6 @@ textArea.oninput = () => {
     parsedEntries = []; // Otherwise, typing out entries (as opposed to copying and pasting them) will register a new entry for each digit in the amount. E.g. speise 250 => [{amount: "2", item: "speise"}, {amount: "25", item: "speise"}, {amount: "250", item: "speise"}] only the first of which (i.e. {amount: "2", item: "speise"}) will actually be found in favs.
     logButton.disabled = true; // button is disabled by default
     table_parsedEntries.innerHTML = '';
-    table_parsedEntries.appendChild(tr_headers);
     const content = textArea.value;
     chrome.storage.local.set({ textareaContent: content }); // store textarea content
 

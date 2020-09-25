@@ -15,13 +15,21 @@
             <span class="slider round"></span>
         </label>
     </div>
-    <div id="containerMain">
+    <div id="container-main">
         <textarea id="textarea"></textarea>
         <div>
-            <table id="parsedEntries">
+            <table id="table-container">
                 <tr>
-                    <th>Item</th>
-                    <th>Amount</th>
+                    <th class="fake-header">Item</th>
+                    <th class="fake-header">Amount</th>
+                </tr>
+                <tr>
+                    <td colspan="2" style="width: 100%;">
+                        <div id="scroll-container">
+                            <table id="parsed-entries">
+                            </table>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </div>
