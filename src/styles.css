@@ -8,12 +8,20 @@
 }
 
 body {
-    margin: 15px;
-    margin-top: 40px;
+    /* margin: 15px; */
+    /* margin-top: 40px; */
+    /* background-color: #F5F5FE; */
+}
+
+#top-bar {
+    /* background-color: #FFFCE8; */
+    height: 30px;
+    border-bottom: 2px solid #22a7ee;
 }
 
 #container-main {
-    /* margin: 5px; */
+    margin: 0 15px;
+    margin-top: 15px;
     /* padding: 4px; */
     display: flex;
     flex-direction: row;
@@ -31,4 +39,11 @@ textarea {
     /* 4 for the number of lines in the placeholder. 2px to account for border. 4px for some extra breathing space*/
     min-width: 250px;
     font-family: 'Roboto', sans-serif;
+}
+
+#warning {
+    float: left;
+    margin-top: 5px;
+    margin-left: 15px;
+    color: red
 }
