@@ -12,7 +12,6 @@
     table-layout: fixed;
 }
 
-
 #parsed-entries td:first-child {
     width: 80%;
 }
@@ -25,6 +24,10 @@ th {
     text-align: left;
     min-width: 60px;
     border-bottom: 1px solid #555;
+}
+
+td {
+    font-weight: bold;
 }
 
 th:first-child {
