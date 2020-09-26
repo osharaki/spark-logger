@@ -11,10 +11,12 @@ body {
     /* margin: 15px; */
     /* margin-top: 40px; */
     /* background-color: #F5F5FE; */
+    /* background: url(../images/memphis-colorful.png) repeat 0 0; */
+    background: url(../images/watercolor.png) repeat 0 0;
 }
 
 #top-bar {
-    /* background-color: #FFFCE8; */
+    background-color: #FFFCE8;
     height: 30px;
     border-bottom: 2px solid #22a7ee;
 }
