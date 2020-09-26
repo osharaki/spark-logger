@@ -5,8 +5,6 @@ const table_parsedEntries = document.getElementById("parsed-entries");
 
 const textArea = document.getElementById("textarea");
 textArea.focus();
-const entryOrderSwitch = document.getElementById('checkbox')
-textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n..." : "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n...";
 const logButton = document.getElementsByTagName('button')[0];
 logButton.disabled = true; // button is disabled by default
 let parsedEntries = []; // Used by button for finally logging the entries
@@ -26,7 +24,7 @@ textArea.oninput = () => {
 
     div_warning.className = ""; // reset warnings
 
-    chrome.runtime.sendMessage({ msg: "User Input", data: content, isItemAmount: !entryOrderSwitch.checked }, (response) => {
+    chrome.runtime.sendMessage({ msg: "User Input", data: content }, (response) => {
         let parseError = false;
         if (response) {
             if (response.data) {
@@ -87,11 +85,6 @@ const textAreaInputEvent = new Event('input', {
     bubbles: true,
     cancelable: true,
 })
-
-entryOrderSwitch.onclick = () => {
-    textarea.placeholder = entryOrderSwitch.checked ? "Amount 1    Item 1\nAmount 2    Item 2\nAmount 3    Item 3\n..." : "Item 1    Amount 1\nItem 2    Amount 2\nItem 3    Amount 3\n...";
-    textArea.dispatchEvent(textAreaInputEvent); // Triggers a "fake" input event whenever the switch is toggled
-}
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request) {
