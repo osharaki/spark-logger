@@ -37,10 +37,13 @@ textArea.oninput = () => {
 
                     logButton.disabled = false; // button enabled as soon as there's a valid entry
                     const tr_parsedEntry = document.createElement('tr');
+                    const td_emoji = document.createElement('td');
                     const td_parsedItem = document.createElement('td');
-                    td_parsedItem.appendChild(document.createTextNode(`${entry.item}`));
                     const td_parsedAmount = document.createElement('td');
+                    td_emoji.innerHTML = '&#x1F354';
+                    td_parsedItem.appendChild(document.createTextNode(`${entry.item}`));
                     td_parsedAmount.appendChild(document.createTextNode(`${entry.amount}`));
+                    tr_parsedEntry.appendChild(td_emoji);
                     tr_parsedEntry.appendChild(td_parsedItem);
                     tr_parsedEntry.appendChild(td_parsedAmount);
                     table_parsedEntries.appendChild(tr_parsedEntry);

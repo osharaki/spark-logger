@@ -1,5 +1,5 @@
 #table-container {
-    padding-left: 30px;
+    padding-left: 20px;
 }
 
 #scroll-container {
@@ -13,7 +13,12 @@
 }
 
 #parsed-entries td:first-child {
-    width: 80%;
+    width: 10%;
+    text-align: center;
+}
+
+#parsed-entries td:nth-child(2) {
+    width: 70%;
     text-transform: capitalize;
 }
 
@@ -23,20 +28,25 @@
 
 th {
     text-align: left;
-    min-width: 60px;
+    /* min-width: 60px; */
     border-bottom: 1px solid #555;
 }
 
-td {
-    font-weight: bold;
+th:first-child {
+    width: 10%;
+    border: none;
 }
 
-th:first-child {
-    width: 80%;
+th:nth-child(2) {
+    width: 70%;
 }
 
 th:last-child {
     text-align: right;
+}
+
+td {
+    font-weight: bold;
 }
 
 #parsed-entries td {
