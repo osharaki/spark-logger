@@ -64,7 +64,7 @@ logButton.onclick = () => {
     chrome.storage.local.set({ textareaContent: null }); // empty storage when user logs entries
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { msg: "Log Entries", data: parsedEntries }, (response) => {
-            const isFavWarning = response.data.length !== parsedEntries.length; // Check has to be done here since parsedEntries becomes empty after clearing the text area
+            const isFavWarning = response.data.includes(null);
 
             // Has to be inside this callback so as not to undo the fav-warning class assignment. If placed outside, it would execute before the response arrives. This is because chrome.tabs.query, like most other Chrome API methods, is asynchronous (see: https://developer.chrome.com/extensions/overview#sync).
             textArea.value = '';
