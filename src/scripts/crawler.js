@@ -6,6 +6,7 @@ function findFavs(entries) {
     // https://stackoverflow.com/questions/6061760/document-getelementbyid-regex
     const favs = document.querySelectorAll('[id^="fav_line"]');
     const matchingElements = [];
+    let error = false;
     for (let fav of favs) {
         const favText = fav.getElementsByClassName("np_tc2")[0].getElementsByTagName("label")[0].innerText;
         let minDist = Infinity;
@@ -33,7 +34,11 @@ function findFavs(entries) {
         }
         if (mostSimilarElement)
             matchingElements.push(mostSimilarElement);
+        else
+            error = true;
     }
+    if (error)
+        matchingElements.push(null);
     const searchFavInput = document.getElementsByClassName("tracker_search_fav_input")[0];
     matchingElements.push(searchFavInput);
     return matchingElements;
@@ -46,6 +51,9 @@ function fillFavs(foundElements) {
     searchFavInput.dispatchEvent(new Event("keyup"));
 
     for (let foundElement of foundElements.slice(0, -1)) {
+        if (!foundElement) {
+            continue; // skip the null element, which signals a fav warning
+        }
         foundElement.checkbox.checked = true;
         for (let option of foundElement.options) {
             let optionText = option.innerText;
@@ -62,7 +70,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.msg == "Log Entries") {
         let foundElements = findFavs(request.data);
         fillFavs(foundElements);
-        foundElements = foundElements.filter(value => Object.keys(value).length !== 0); // removing empty objects from foundElements (for some reason findFavs always finds an extra empty object)
+        foundElements = foundElements.filter(value => {
+            if (value == null)
+                return true;
+            else
+                return Object.keys(value).length !== 0;
+        }); // removing empty objects from foundElements (for some reason findFavs always finds an extra empty object) while keeping the null element if it exists
         sendResponse({ sender: "crawler.js", data: foundElements });
     }
 });
