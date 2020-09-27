@@ -10,9 +10,9 @@
 body {
     /* margin: 15px; */
     /* margin-top: 40px; */
-    /* background-color: #F5F5FE; */
+    background-color: #F5F5FE;
     /* background: url(../images/memphis-colorful.png) repeat 0 0; */
-    background: url(../images/watercolor.png) repeat 0 0;
+    /* background: url(../images/watercolor.png) repeat 0 0; */
 }
 
 #top-bar {
