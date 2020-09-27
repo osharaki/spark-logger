@@ -79,3 +79,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({ sender: "crawler.js", data: foundElements });
     }
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.msg == "Navigate to favs") {
+        const favsTab = document.getElementById('tracker_search_box_favorites_tab');
+        if (favsTab.style.display != 'inline') {
+            for (const element of favsTab.firstElementChild.children) {
+                if (element.innerText == 'Favorites')
+                    element.click();
+            }
+        }
+    }
+})

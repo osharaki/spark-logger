@@ -18,6 +18,9 @@ chrome.runtime.onInstalled.addListener(() => {
 /* Load previous textarea content (if any) when user opens popup */
 chrome.runtime.onConnect.addListener((port) => {
     console.log('Extension connected!');
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, { msg: "Navigate to favs" });
+    });
     chrome.storage.local.get(['textareaContent'], (result) => {
         console.log(result.textareaContent)
         if (result.textareaContent) {
