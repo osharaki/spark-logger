@@ -3,15 +3,27 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Asap, sans-serif;
+    font-family: 'Roboto', sans-serif;
     /* font-size: small; */
 }
 
 body {
-    margin: 5px;
+    /* margin: 15px; */
+    /* margin-top: 40px; */
+    background-color: #F5F5FE;
+    /* background: url(../images/memphis-colorful.png) repeat 0 0; */
+    /* background: url(../images/watercolor.png) repeat 0 0; */
 }
 
-#containerMain {
-    /* margin: 5px; */
+#top-bar {
+    background-color: #FFFCE8;
+    height: 30px;
+    border-bottom: 2px solid #22a7ee;
+}
+
+#container-main {
+    margin: 0 15px;
+    margin-top: 15px;
     /* padding: 4px; */
     display: flex;
     flex-direction: row;
@@ -31,33 +43,9 @@ textarea {
     font-family: 'Roboto', sans-serif;
 }
 
-table {
-    table-layout: fixed;
-    width: 100%;
-    padding-left: 30px;
-}
-
-th:first-child {
-    width: 80%;
-}
-
-th {
-    text-align: left;
-    min-width: 60px;
-}
-
-td {
-    word-wrap: break-word;
-    font-family: 'Roboto', sans-serif;
-    font-size: small;
-}
-
-td:first-of-type {
-    padding-right: 10px;
-}
-
-/* not working */
-
-tr {
-    margin-bottom: 30px;
+#warning {
+    float: left;
+    margin-top: 5px;
+    margin-left: 15px;
+    color: red
 }

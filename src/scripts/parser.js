@@ -1,4 +1,4 @@
-function parseEntries(entries, isItemAmount) {
+function parseEntries(entries, isItemAmount = true) {
     // https://stackoverflow.com/questions/21711768/split-string-in-javascript-and-detect-line-break
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 
