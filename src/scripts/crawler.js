@@ -71,28 +71,27 @@ function fillFavs(foundElements) {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.msg == "Log Entries") {
-        let foundElements = findFavs(request.data);
-        fillFavs(foundElements);
-        foundElements = foundElements.filter(value => {
-            if (value == null)
-                return true;
-            else
-                return Object.keys(value).length !== 0;
-        }); // removing empty objects from foundElements (for some reason findFavs always finds an extra empty object) while keeping the null element if it exists
-        sendResponse({ sender: "crawler.js", data: foundElements });
+    switch (request.msg) {
+        case "Log Entries":
+            let foundElements = findFavs(request.data);
+            fillFavs(foundElements);
+            foundElements = foundElements.filter(value => {
+                if (value == null)
+                    return true;
+                else
+                    return Object.keys(value).length !== 0;
+            }); // removing empty objects from foundElements (for some reason findFavs always finds an extra empty object) while keeping the null element if it exists
+            sendResponse({ sender: "crawler.js", data: foundElements });
+            break;
+        case "Navigate to favs":
+            const favsTab = document.getElementById('tracker_search_box_favorites_tab');
+            if (favsTab.style.display != 'inline') {
+                for (const element of favsTab.firstElementChild.children) {
+                    if (element.innerText == 'Favorites')
+                        element.click();
+                }
+            }
+            sendResponse({ msg: "Navigated to favs" });
+            break;
     }
 });
-
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.msg == "Navigate to favs") {
-        const favsTab = document.getElementById('tracker_search_box_favorites_tab');
-        if (favsTab.style.display != 'inline') {
-            for (const element of favsTab.firstElementChild.children) {
-                if (element.innerText == 'Favorites')
-                    element.click();
-            }
-        }
-    }
-    sendResponse({ msg: "Navigated to favs" });
-})
