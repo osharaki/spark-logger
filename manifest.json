@@ -6,7 +6,7 @@
         "declarativeContent",
         "storage",
         "webRequest",
-        "https://www.sparkpeople.com"
+        "https://www.sparkpeople.com/myspark/*"
     ],
     "background": {
         "scripts": [
