@@ -6,7 +6,7 @@
         "declarativeContent",
         "storage",
         "webRequest",
-        "https://www.sparkpeople.com/myspark/nutrition_add_favorites_inpage.asp?*"
+        "https://www.sparkpeople.com"
     ],
     "background": {
         "scripts": [
