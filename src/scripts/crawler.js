@@ -6,12 +6,14 @@ function findFavs(entries) {
     // https://stackoverflow.com/questions/6061760/document-getelementbyid-regex
     const favs = document.querySelectorAll('[id^="fav_line"]');
     const matchingElements = [];
-    let error = false;
+    let matchCount = Array(entries.length).fill(0);
     for (let fav of favs) {
         const favText = fav.getElementsByClassName("np_tc2")[0].getElementsByTagName("label")[0].innerText;
         let minDist = Infinity;
         let mostSimilarElement = null;
-        for (let entry of entries) {
+        let mostSimilarElementIndex = null;
+
+        for (const [i, entry] of entries.entries()) {
             if (entry) {
                 if (entry.item && favText.toLowerCase().includes(entry.item.toLowerCase())) {
                     const dist = levenshtein(entry.item, favText); // choosing most similar match
@@ -28,15 +30,17 @@ function findFavs(entries) {
                             textField: textField,
                             amount: entry.amount
                         };
+                        mostSimilarElementIndex = i;
                     }
                 }
             }
         }
-        if (mostSimilarElement)
+        if (mostSimilarElement) {
             matchingElements.push(mostSimilarElement);
-        else
-            error = true;
+            matchCount[mostSimilarElementIndex]++;
+        }
     }
+    const error = matchCount.some((e) => e == 0 || e > 1); // trigger error if any entry is never found or found more than once in favs
     if (error)
         matchingElements.push(null);
     const searchFavInput = document.getElementsByClassName("tracker_search_fav_input")[0];
