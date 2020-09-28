@@ -12,6 +12,12 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
+chrome.webRequest.onCompleted.addListener((details) => {
+    console.log('Request completed. Here are the details:');
+    console.log(details);
+},
+    { urls: ["https://www.sparkpeople.com/myspark/nutrition_add_favorites_inpage.asp?*"] });
+
 // https://stackoverflow.com/questions/15798516/is-there-an-event-for-when-a-chrome-extension-popup-is-closed
 // https://stackoverflow.com/questions/25072940/event-when-chrome-popup-is-closed
 
@@ -19,7 +25,11 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.runtime.onConnect.addListener((port) => {
     console.log('Extension connected!');
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, { msg: "Navigate to favs" });
+        chrome.tabs.sendMessage(tabs[0].id, { msg: "Navigate to favs" }, (response) => {
+            if (response.msg == 'Navigated to favs') {
+                console.log('Crawler navigated to tabs');
+            }
+        });
     });
     chrome.storage.local.get(['textareaContent'], (result) => {
         console.log(result.textareaContent)

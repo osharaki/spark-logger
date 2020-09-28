@@ -4,14 +4,16 @@
     "description": "Converts your food log from text to Sparkpeople entries using your favorites",
     "permissions": [
         "declarativeContent",
-        "storage"
+        "storage",
+        "webRequest",
+        "https://www.sparkpeople.com/myspark/nutrition_add_favorites_inpage.asp?*"
     ],
     "background": {
         "scripts": [
             "background.js",
             "scripts/parser.js"
         ],
-        "persistent": false
+        "persistent": true
     },
     "content_scripts": [
         {
