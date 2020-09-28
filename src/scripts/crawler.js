@@ -1,5 +1,16 @@
 import levenshtein from "js-levenshtein";
 
+// gets all favorites on page
+function getFavs() {
+    const favs = document.querySelectorAll('[id^="fav_line"]');
+    const favNames = [];
+    for (const fav of favs) {
+        favNames.push(fav.getElementsByClassName("np_tc2")[0].getElementsByTagName("label")[0].innerText);
+    }
+
+    return favNames
+}
+
 function findFavs(entries) {
     // https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors
     // https://stackoverflow.com/questions/6991494/javascript-getelementbyid-based-on-a-partial-string
@@ -71,27 +82,36 @@ function fillFavs(foundElements) {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    switch (request.msg) {
-        case "Log Entries":
-            let foundElements = findFavs(request.data);
-            fillFavs(foundElements);
-            foundElements = foundElements.filter(value => {
-                if (value == null)
-                    return true;
-                else
-                    return Object.keys(value).length !== 0;
-            }); // removing empty objects from foundElements (for some reason findFavs always finds an extra empty object) while keeping the null element if it exists
-            sendResponse({ sender: "crawler.js", data: foundElements });
-            break;
-        case "Navigate to favs":
-            const favsTab = document.getElementById('tracker_search_box_favorites_tab');
-            if (favsTab.style.display != 'inline') {
-                for (const element of favsTab.firstElementChild.children) {
-                    if (element.innerText == 'Favorites')
-                        element.click();
+    if (request) {
+        switch (request.msg) {
+            case "Log Entries":
+                let foundElements = findFavs(request.data);
+                fillFavs(foundElements);
+                foundElements = foundElements.filter(value => {
+                    if (value == null)
+                        return true;
+                    else
+                        return Object.keys(value).length !== 0;
+                }); // removing empty objects from foundElements (for some reason findFavs always finds an extra empty object) while keeping the null element if it exists
+                sendResponse({ sender: "crawler.js", data: foundElements });
+                break;
+            case "Navigate to favs":
+                const favsTab = document.getElementById('tracker_search_box_favorites_tab');
+                if (favsTab.style.display != 'inline') {
+                    for (const element of favsTab.firstElementChild.children) {
+                        if (element.innerText == 'Favorites') {
+                            element.click();
+                            sendResponse({ msg: "Navigated to favs" });
+                        }
+                    }
                 }
-            }
-            sendResponse({ msg: "Navigated to favs" });
-            break;
+                else
+                    sendResponse({ msg: "Already on favs" });
+                break;
+            case "Retrieve favs":
+                console.log('Crawler retrieving favs');
+                const favs = getFavs();
+                sendResponse({ msg: "Retrieved favs", data: favs })
+        }
     }
 });

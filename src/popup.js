@@ -1,3 +1,5 @@
+const { crossRefEntries } = require("./scripts/emojiEngine");
+
 chrome.runtime.connect(); // allows subscribing to onConnect/onDisconnect events in background.js to detect when popup is opened/closed
 
 const table_container = document.getElementById("table-container");
@@ -28,36 +30,51 @@ textArea.oninput = () => {
         let parseError = false;
         if (response) {
             if (response.data) {
-                for (const entry of response.data) {
-                    if (!entry) { // a null element in parser.js's response indicates that one or more entries did not match the formatting rules
-                        parseError = true;
-                        continue;
-                    }
-                    parsedEntries = response.data;
+                chrome.storage.local.get(['favNames'], (result) => {
+                    if (result) {
+                        console.log(result.favNames)
+                        if (result.favNames) {
+                            const matchCount = crossRefEntries(result.favNames, response.data);
+                            for (const [entryIndex, entry] of response.data.entries()) {
+                                if (!entry) { // a null element in parser.js's response indicates that one or more entries did not match the formatting rules
+                                    parseError = true;
+                                    continue;
+                                }
+                                parsedEntries = response.data;
 
-                    logButton.disabled = false; // button enabled as soon as there's a valid entry
-                    const tr_parsedEntry = document.createElement('tr');
-                    const td_emoji = document.createElement('td');
-                    const td_parsedItem = document.createElement('td');
-                    const td_parsedAmount = document.createElement('td');
-                    td_emoji.innerHTML = '&#x1F354';
-                    td_parsedItem.appendChild(document.createTextNode(`${entry.item}`));
-                    td_parsedAmount.appendChild(document.createTextNode(`${entry.amount}`));
-                    tr_parsedEntry.appendChild(td_emoji);
-                    tr_parsedEntry.appendChild(td_parsedItem);
-                    tr_parsedEntry.appendChild(td_parsedAmount);
-                    table_parsedEntries.appendChild(tr_parsedEntry);
-                }
+                                logButton.disabled = false; // button enabled as soon as there's a valid entry
+                                const tr_parsedEntry = document.createElement('tr');
+                                const td_emoji = document.createElement('td');
+                                const td_parsedItem = document.createElement('td');
+                                const td_parsedAmount = document.createElement('td');
+                                if (matchCount[entryIndex] == 0) // entry not in favs
+                                    td_emoji.innerHTML = '&#x2753';
+                                else if (matchCount[entryIndex] > 1) // entry has multiple matches in favs
+                                    td_emoji.innerHTML = '&#x2757';
+                                else { // entry is fine, find appropriate emoji
+                                    // call emoji engine
+                                    td_emoji.innerHTML = '&#x2705';
+                                }
+                                td_parsedItem.appendChild(document.createTextNode(`${entry.item}`));
+                                td_parsedAmount.appendChild(document.createTextNode(`${entry.amount}`));
+                                tr_parsedEntry.appendChild(td_emoji);
+                                tr_parsedEntry.appendChild(td_parsedItem);
+                                tr_parsedEntry.appendChild(td_parsedAmount);
+                                table_parsedEntries.appendChild(tr_parsedEntry);
+                            }
 
-                if (parseError) {// Check if all entries were successfully parsed and if not, issue warning
-                    if ((content.match(/^.*$/gm) || '').length > response.data.length) { // The regex counts the number of lines in the textarea. '' prevents error in case content.match() returns undefined due to no matches.
-                        div_warning.className = "parse-warning";
+                            if (parseError) {// Check if all entries were successfully parsed and if not, issue warning
+                                if ((content.match(/^.*$/gm) || '').length > response.data.length) { // The regex counts the number of lines in the textarea. '' prevents error in case content.match() returns undefined due to no matches.
+                                    div_warning.className = "parse-warning";
+                                }
+                                else {
+                                    div_warning.className = "";
+                                }
+                            }
+                            updateWarning();
+                        }
                     }
-                    else {
-                        div_warning.className = "";
-                    }
-                }
-                updateWarning();
+                });
             }
         }
     });
@@ -66,21 +83,23 @@ textArea.oninput = () => {
 logButton.onclick = () => {
     chrome.storage.local.set({ textareaContent: null }); // empty storage when user logs entries
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, { msg: "Log Entries", data: parsedEntries }, (response) => {
-            const isFavWarning = response.data.includes(null);
+        if (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { msg: "Log Entries", data: parsedEntries }, (response) => {
+                const isFavWarning = response.data.includes(null);
 
-            // Has to be inside this callback so as not to undo the fav-warning class assignment. If placed outside, it would execute before the response arrives. This is because chrome.tabs.query, like most other Chrome API methods, is asynchronous (see: https://developer.chrome.com/extensions/overview#sync).
-            textArea.value = '';
-            textArea.dispatchEvent(textAreaInputEvent);
-            if (response) {
-                if (response.data) {
-                    if (isFavWarning) {
-                        div_warning.className = "fav-warning";
-                        updateWarning();
+                // Has to be inside this callback so as not to undo the fav-warning class assignment. If placed outside, it would execute before the response arrives. This is because chrome.tabs.query, like most other Chrome API methods, is asynchronous (see: https://developer.chrome.com/extensions/overview#sync).
+                textArea.value = '';
+                textArea.dispatchEvent(textAreaInputEvent);
+                if (response) {
+                    if (response.data) {
+                        if (isFavWarning) {
+                            div_warning.className = "fav-warning";
+                            updateWarning();
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     });
 }
 

@@ -12,9 +12,25 @@ chrome.runtime.onInstalled.addListener(() => {
     });
 });
 
+// Signal crawler to retrieve fav names once they are loaded on page and store them locally
 chrome.webRequest.onCompleted.addListener((details) => {
     console.log('Request completed. Here are the details:');
     console.log(details);
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        if (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, { msg: "Retrieve favs" }, (response) => {
+                if (response) {
+                    if (response.msg == 'Retrieved favs') {
+                        console.log('Crawler retrieved favs');
+                        if (response.data) {
+                            console.log(response.data);
+                            chrome.storage.local.set({ favNames: response.data });
+                        }
+                    }
+                }
+            });
+        }
+    });
 },
     { urls: ["https://www.sparkpeople.com/myspark/nutrition_add_favorites_inpage.asp?*"] });
 
@@ -26,15 +42,19 @@ chrome.runtime.onConnect.addListener((port) => {
     console.log('Extension connected!');
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { msg: "Navigate to favs" }, (response) => {
-            if (response.msg == 'Navigated to favs') {
-                console.log('Crawler navigated to tabs');
+            if (response) {
+                if (response.msg == 'Navigated to favs') {
+                    console.log('Crawler navigated to tabs');
+                }
             }
         });
     });
     chrome.storage.local.get(['textareaContent'], (result) => {
         console.log(result.textareaContent)
-        if (result.textareaContent) {
-            chrome.runtime.sendMessage({ msg: "Load textarea content", data: result.textareaContent });
+        if (result) {
+            if (result.textareaContent) {
+                chrome.runtime.sendMessage({ msg: "Load textarea content", data: result.textareaContent });
+            }
         }
     });
 
