@@ -91,9 +91,11 @@ const textAreaInputEvent = new Event('input', {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request) {
-        if (request.msg == "Load textarea content") {
-            textArea.value = request.data;
-            textArea.dispatchEvent(textAreaInputEvent);
+        switch (request.msg) {
+            case "Load textarea content":
+                textArea.value = request.data;
+                textArea.dispatchEvent(textAreaInputEvent);
+                break;
         }
     }
 });
