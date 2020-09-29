@@ -8,17 +8,16 @@ function parseEntries(entries, isItemAmount = true) {
         if (!isItemAmount) {
             // amount followed by item
             for (const line of lines) {
-                const matches = line.match(/^ *[0-9]+ (?=(.*$))/m); // global flag removed to be able to access capturing groups
-                // const matches = line.match(/(^ *[0-9]+|.*$)/gm);
+                const matches = line.match(/^ *[0-9]+(.[0-9]+)? (?=(.*$))/m); // global flag removed to be able to access capturing groups
                 if (matches)
-                    matches[1] ? entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: removeWrappingSpaces(matches[1]) })
+                    matches[1] ? entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: removeWrappingSpaces(matches[2]) })
                         : entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: null });
             }
         }
         else {
             // item followed by amount
             for (const line of lines) {
-                const matches = line.match(/^.* (?=([0-9]+ *$))/m);
+                const matches = line.match(/^.* (?=([0-9]+(.[0-9]+)? *$))/m);
                 // const matches = line.match(/^.* |[0-9]+ *$/gm);
                 if (matches)
                     matches[1] ? entriesParsed.push({ amount: removeWrappingSpaces(matches[1]), item: removeWrappingSpaces(matches[0]) })
