@@ -38,6 +38,7 @@ textArea.oninput = () => {
                             for (const [entryIndex, entry] of response.data.entries()) {
                                 if (!entry) { // a null element in parser.js's response indicates that one or more entries did not match the formatting rules
                                     parseError = true;
+                                    logButton.disabled = true;
                                     continue;
                                 }
                                 parsedEntries = response.data;
