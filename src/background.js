@@ -1,3 +1,5 @@
+import parseEntries from "src/scripts/parser";
+
 // Fired when the extension is first installed, when the extension is updated to a new version, and when Chrome is updated to a new version
 chrome.runtime.onInstalled.addListener(() => {
     chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
@@ -64,4 +66,9 @@ chrome.runtime.onConnect.addListener((port) => {
     })
 });
 
-
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.msg == "User Input") {
+        const parsedEntries = parseEntries(request.data, request.isItemAmount);
+        sendResponse({ sender: "parser.js", data: parsedEntries });
+    }
+})

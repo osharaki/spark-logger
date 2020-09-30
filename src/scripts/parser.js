@@ -10,7 +10,7 @@ function parseEntries(entries, isItemAmount = true) {
             for (const line of lines) {
                 const matches = line.match(/^ *[0-9]+(.[0-9]+)? (?=(.*$))/m); // global flag removed to be able to access capturing groups
                 if (matches)
-                    matches[1] ? entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: removeWrappingSpaces(matches[2]) })
+                    matches[2] ? entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: removeWrappingSpaces(matches[2]) })
                         : entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: null });
             }
         }
@@ -38,9 +38,4 @@ function removeWrappingSpaces(literal) {
     return literal.replace(/ +$/m, "").replace(/^ +/m, "");
 }
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.msg == "User Input") {
-        const parsedEntries = parseEntries(request.data, request.isItemAmount);
-        sendResponse({ sender: "parser.js", data: parsedEntries });
-    }
-})
+export { parseEntries, removeWrappingSpaces };
