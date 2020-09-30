@@ -1,4 +1,4 @@
-import parseEntries from "src/scripts/parser";
+import { parseEntries } from "./scripts/parser";
 
 // Fired when the extension is first installed, when the extension is updated to a new version, and when Chrome is updated to a new version
 chrome.runtime.onInstalled.addListener(() => {
