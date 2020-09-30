@@ -19,6 +19,7 @@ body {
     background-color: #FFFCE8;
     height: 30px;
     border-bottom: 2px solid #22a7ee;
+    padding: 0 5px;
 }
 
 #container-main {
@@ -48,4 +49,9 @@ textarea {
     margin-top: 5px;
     margin-left: 15px;
     color: red
+}
+
+span {
+    margin-left: 5px;
+    /* padding: 10px 10px; */
 }
