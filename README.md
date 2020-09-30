@@ -18,8 +18,7 @@ The extension acts as an alternative to the *Favorites* tab, which only allows f
 2. Select the favorites tab
 3. Click the extension icon to open the popup
 4. Enter food name followed by amount (the unit defaults to grams), then hit **Enter** 
-    * Multiple entries can also be pasted in (one entry per line)
-    * The entry order can be changed from *name-amount* to *amount-name* by flipping the toggle switch above the text area
+    * Multiple entries can also be pasted in (each entry must be on a separate line)
 5. Click the **Log entries!** button to find and log the foods in favorites
 
 ## Installation
