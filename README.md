@@ -4,13 +4,20 @@ Sparkpeople Logger is a Chrome extension for easier and more efficient food trac
 The extension acts as an alternative to the *Favorites* tab, which only allows food to be logged one at a time, and enables simultaneous logging of multiple foods.
 
 ## Features
-TBA
+- Simultaneous multi-entry logging
+- Live cross-checking of favorites
+    - :question:: no matching food in favorites
+    - :exclamation:: food has multiple matches in favorites
+    - :white_check_mark:: all good!
+### Upcoming
+- Specifying units
+- :white_check_mark: replaced by emoji of food
 
 ## Usage
 1. Visit https://www.sparkpeople.com/myspark/nutrition.asp (A Sparkpeople account is required)
-2. Select the favorites tab *(A future update will make this step unnecessary)*
+2. Select the favorites tab
 3. Click the extension icon to open the popup
-4. Enter food name followed by amount (currently only grams is supported), then hit **Enter** 
+4. Enter food name followed by amount (the unit defaults to grams), then hit **Enter** 
     * Multiple entries can also be pasted in (one entry per line)
     * The entry order can be changed from *name-amount* to *amount-name* by flipping the toggle switch above the text area
 5. Click the **Log entries!** button to find and log the foods in favorites
@@ -28,8 +35,8 @@ TBA
 
 *:bulb: Hint: be sure to reload the extension from chrome://extensions/ and then the Sparkpeople web page in order for source code modifications to take effect*
 
-## Tests
-TBA
+### Tests
+Parser tests can be executed by running `npm run test`
 
 ## Notice of Non-Affiliation and Disclaimer
 Sparkpeople Logger is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Sparkpeople, Inc, or any of its subsidiaries or its affiliates.
