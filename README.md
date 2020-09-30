@@ -21,7 +21,7 @@ The extension acts as an alternative to the *Favorites* tab, which only allows f
 4. Click the **Log entries!** button to find and log the foods in favorites
 
 ## Installation
- :construction: *The extension is currently under development, but is scheduled for publishing to the Chrome Web Store in October 2020*
+ :construction: *Version 1.0 is currently under development, but is scheduled for publishing to the Chrome Web Store in October 2020*
 
 ## Development
 1. Clone this repo
