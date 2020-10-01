@@ -128,3 +128,13 @@ function updateWarning() {
     else
         div_warning.innerText = "";
 }
+
+const a_githubLink = document.getElementById('github-link');
+a_githubLink.onclick = () => {
+    chrome.tabs.create({ url: a_githubLink.getAttribute('href') });
+}
+
+const a_twitterLink = document.getElementById('twitter-link');
+a_twitterLink.onclick = () => {
+    chrome.tabs.create({ url: a_twitterLink.getAttribute('href') });
+}

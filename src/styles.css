@@ -53,5 +53,15 @@ textarea {
 
 #top-bar span {
     margin-left: 5px;
-    /* padding: 10px 10px; */
+    opacity: 0.7;
+}
+
+#top-bar span:hover {
+    opacity: 1;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
 }
