@@ -143,3 +143,8 @@ const a_donationLink = document.getElementById('donation-link');
 a_donationLink.onclick = () => {
     chrome.tabs.create({ url: a_donationLink.getAttribute('href') });
 } 
+
+const a_usageLink = document.getElementById('usage-link');
+a_usageLink.onclick = () => {
+    chrome.tabs.create({ url: a_usageLink.getAttribute('href') });
+}
