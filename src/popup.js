@@ -138,3 +138,8 @@ const a_twitterLink = document.getElementById('twitter-link');
 a_twitterLink.onclick = () => {
     chrome.tabs.create({ url: a_twitterLink.getAttribute('href') });
 }
+
+const a_donationLink = document.getElementById('donation-link');
+a_donationLink.onclick = () => {
+    chrome.tabs.create({ url: a_donationLink.getAttribute('href') });
+} 
