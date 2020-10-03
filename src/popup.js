@@ -142,9 +142,14 @@ a_twitterLink.onclick = () => {
 const a_donationLink = document.getElementById('donation-link');
 a_donationLink.onclick = () => {
     chrome.tabs.create({ url: a_donationLink.getAttribute('href') });
-} 
+}
 
 const a_usageLink = document.getElementById('usage-link');
 a_usageLink.onclick = () => {
     chrome.tabs.create({ url: a_usageLink.getAttribute('href') });
 }
+
+const i_contactLink = document.getElementById('contact-link');
+i_contactLink.onclick = () => {
+    chrome.tabs.create({ url: i_contactLink.getAttribute('href') });
+} 
