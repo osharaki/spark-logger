@@ -1,5 +1,5 @@
 {
-    "name": "Sparkpeople Logger",
+    "name": "Spark Logger",
     "version": "1.0",
     "description": "Converts your food log from text to Sparkpeople entries using your favorites",
     "permissions": [
