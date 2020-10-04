@@ -1,5 +1,5 @@
-# Sparkpeople Logger
-Sparkpeople Logger is a Chrome extension for easier and more efficient food tracking on [Sparkpeople.com](https://www.sparkpeople.com).
+# Spark Logger
+Spark Logger is a Chrome extension for easier and more efficient food tracking on [Sparkpeople.com](https://www.sparkpeople.com).
 
 The extension acts as an alternative to the *Favorites* tab, which only allows food to be logged one at a time, and enables simultaneous logging of multiple foods.
 
@@ -37,5 +37,5 @@ The extension acts as an alternative to the *Favorites* tab, which only allows f
 Parser tests can be executed by running `npm run test`
 
 ## Notice of Non-Affiliation and Disclaimer
-Sparkpeople Logger is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Sparkpeople, Inc, or any of its subsidiaries or its affiliates.
+Spark Logger is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Sparkpeople, Inc, or any of its subsidiaries or its affiliates.
 The name Sparkpeople as well as related names, marks, emblems and images are registered trademarks of their respective owners.
