@@ -1,4 +1,9 @@
-# Spark Logger
+
+<p align="center">
+  <img src="./images/SL-Logo_Preview.png" width="150"/>
+</p>
+<h1 align="center">Spark Logger</h1>
+
 Spark Logger is a Chrome extension for easier and more efficient food tracking on [Sparkpeople.com](https://www.sparkpeople.com).
 
 The extension acts as an alternative to the *Favorites* tab, which only allows food to be logged one at a time, and enables simultaneous logging of multiple foods.
