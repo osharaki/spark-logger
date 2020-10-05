@@ -51,8 +51,7 @@ textArea.oninput = () => {
                                     td_emoji.innerHTML = '&#x2753';
                                 else if (matchCount[entryIndex] > 1) // entry has multiple matches in favs
                                     td_emoji.innerHTML = '&#x2757';
-                                else { // entry is fine, find appropriate emoji
-                                    // call emoji engine
+                                else { // entry is fine
                                     td_emoji.innerHTML = '&#x2705';
                                 }
                                 td_parsedItem.appendChild(document.createTextNode(`${entry.item}`));
