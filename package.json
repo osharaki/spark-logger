@@ -1,15 +1,21 @@
 {
-  "name": "sparkpeople_plugin",
+  "name": "spark_logger",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Chrome extension for easier and more efficient food tracking on Sparkpeople.com.",
   "main": "src/popup.html",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "js-levenshtein": "^1.1.6"
+    "@fortawesome/fontawesome-free": "^5.15.0",
+    "js-levenshtein": "^1.1.6",
+    "scripts": "^0.1.0",
+    "src": "^1.1.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
     "cpy-cli": "^3.1.1",
     "jest": "^26.1.0",
     "parcel-bundler": "^1.12.4",
@@ -20,8 +26,10 @@
     "testw": "jest --watch",
     "clean": "rm -rf dist && cpy manifest.json dist && cpy images/* dist/images",
     "predev": "npm run clean",
-    "dev": "parcel src/popup.html src/background.js src/scripts/parser.js src/scripts/crawler.js"
+    "dev": "parcel src/popup.html src/background.js src/scripts/parser.js src/scripts/crawler.js",
+    "preprod": "npm run clean",
+    "prod": "parcel build src/popup.html src/background.js src/scripts/parser.js src/scripts/crawler.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Omar Sharaki",
+  "license": "MIT"
 }

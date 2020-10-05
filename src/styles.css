@@ -3,14 +3,28 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Asap, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    /* font-size: small; */
 }
 
 body {
-    margin: 5px;
+    /* margin: 15px; */
+    /* margin-top: 40px; */
+    background-color: #F5F5FE;
+    /* background: url(../images/memphis-colorful.png) repeat 0 0; */
+    /* background: url(../images/watercolor.png) repeat 0 0; */
 }
 
-#containerMain {
-    /* margin: 5px; */
+#top-bar {
+    background-color: #FFFCE8;
+    height: 30px;
+    border-bottom: 2px solid #22a7ee;
+    padding: 0 5px;
+}
+
+#container-main {
+    margin: 0 15px;
+    margin-top: 15px;
     /* padding: 4px; */
     display: flex;
     flex-direction: row;
@@ -18,23 +32,36 @@ body {
 
 textarea {
     --padding: 4px;
+    --line-height: 1.2em;
     resize: none;
     display: inline-block;
     margin-top: 16px;
-    margin-right: 5px;
-    line-height: 1.5em;
+    line-height: var(--line-height);
     padding: var(--padding);
-    min-height: calc(6em + 2px + var(--padding));
-    /* 2px to account for border + padding*/
+    min-height: calc(calc(var(--line-height) * 4) + 2px + 4px + var(--padding));
+    /* 4 for the number of lines in the placeholder. 2px to account for border. 4px for some extra breathing space*/
+    min-width: 250px;
+    font-family: 'Roboto', sans-serif;
 }
 
-th {
-    text-align: left;
-    min-width: 60px;
+#warning {
+    float: left;
+    margin-top: 5px;
+    margin-left: 15px;
+    color: red
 }
 
-/* not working */
+#top-bar span {
+    margin-left: 5px;
+    opacity: 0.7;
+}
 
-tr {
-    margin-bottom: 30px;
+#top-bar span:hover {
+    opacity: 1;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
 }

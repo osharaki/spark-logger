@@ -1,4 +1,4 @@
-function parseEntries(entries, isItemAmount) {
+function parseEntries(entries, isItemAmount = true) {
     // https://stackoverflow.com/questions/21711768/split-string-in-javascript-and-detect-line-break
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 
@@ -8,21 +8,23 @@ function parseEntries(entries, isItemAmount) {
         if (!isItemAmount) {
             // amount followed by item
             for (const line of lines) {
-                const matches = line.match(/^ *[0-9]+ (?=(.*$))/m); // global flag removed to be able to access capturing groups
-                // const matches = line.match(/(^ *[0-9]+|.*$)/gm);
+                const matches = line.match(/^ *[0-9]+(.[0-9]+)? (?=(.*$))/m); // global flag removed to be able to access capturing groups
                 if (matches)
-                    matches[1] ? entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: removeWrappingSpaces(matches[1]) })
-                        : entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: null });
+                    entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: removeWrappingSpaces(matches[2]) })
+
+                /* An alternative that can be used for targeted parse warnings */
+                // matches ? entriesParsed.push({ amount: removeWrappingSpaces(matches[0]), item: removeWrappingSpaces(matches[2]) }) : entriesParsed.push(null);
             }
         }
         else {
             // item followed by amount
             for (const line of lines) {
-                const matches = line.match(/^.* (?=([0-9]+ *$))/m);
-                // const matches = line.match(/^.* |[0-9]+ *$/gm);
+                const matches = line.match(/^.* (?=([0-9]+(.[0-9]+)? *$))/m);
                 if (matches)
-                    matches[1] ? entriesParsed.push({ amount: removeWrappingSpaces(matches[1]), item: removeWrappingSpaces(matches[0]) })
-                        : entriesParsed.push({ amount: null, item: removeWrappingSpaces(matches[0]) });
+                    entriesParsed.push({ amount: removeWrappingSpaces(matches[1]), item: removeWrappingSpaces(matches[0]) })
+
+                /* An alternative that can be used for targeted parse warnings */
+                // matches ? entriesParsed.push({ amount: removeWrappingSpaces(matches[1]), item: removeWrappingSpaces(matches[0]) }) : entriesParsed.push(null);
             }
         }
         // This null element is used for warning in the UI
@@ -30,7 +32,6 @@ function parseEntries(entries, isItemAmount) {
             entriesParsed.push(null);
     }
 
-    // console.log(entriesParsed);
     return entriesParsed;
 }
 
@@ -39,9 +40,4 @@ function removeWrappingSpaces(literal) {
     return literal.replace(/ +$/m, "").replace(/^ +/m, "");
 }
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.msg == "User Input") {
-        const parsedEntries = parseEntries(request.data, request.isItemAmount);
-        sendResponse({ sender: "parser.js", data: parsedEntries });
-    }
-})
+export { parseEntries, removeWrappingSpaces };
