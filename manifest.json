@@ -1,7 +1,7 @@
 {
     "name": "Spark Logger",
     "version": "1.0",
-    "description": "Converts your food log from text to Sparkpeople entries using your favorites",
+    "description": "A Chrome extension for easier and more efficient food tracking on Sparkpeople.com.",
     "permissions": [
         "declarativeContent",
         "storage",
