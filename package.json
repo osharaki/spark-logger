@@ -1,7 +1,7 @@
 {
-  "name": "sparkpeople_plugin",
+  "name": "spark_logger",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Chrome extension for easier and more efficient food tracking on Sparkpeople.com.",
   "main": "src/popup.html",
   "directories": {
     "test": "test"
@@ -28,6 +28,6 @@
     "predev": "npm run clean",
     "dev": "parcel src/popup.html src/background.js src/scripts/parser.js src/scripts/crawler.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Omar Sharaki",
+  "license": "MIT"
 }
