@@ -26,7 +26,9 @@
     "testw": "jest --watch",
     "clean": "rm -rf dist && cpy manifest.json dist && cpy images/* dist/images",
     "predev": "npm run clean",
-    "dev": "parcel src/popup.html src/background.js src/scripts/parser.js src/scripts/crawler.js"
+    "dev": "parcel src/popup.html src/background.js src/scripts/parser.js src/scripts/crawler.js",
+    "preprod": "npm run clean",
+    "prod": "parcel build src/popup.html src/background.js src/scripts/parser.js src/scripts/crawler.js"
   },
   "author": "Omar Sharaki",
   "license": "MIT"
