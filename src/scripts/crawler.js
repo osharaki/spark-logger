@@ -109,7 +109,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     sendResponse({ msg: "Already on favs" });
                 break;
             case "Retrieve favs":
-                console.log('Crawler retrieving favs');
                 const favs = getFavs();
                 sendResponse({ msg: "Retrieved favs", data: favs })
         }

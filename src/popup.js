@@ -32,7 +32,6 @@ textArea.oninput = () => {
             if (response.data) {
                 chrome.storage.local.get(['favNames'], (result) => {
                     if (result) {
-                        console.log(result.favNames)
                         if (result.favNames) {
                             const matchCount = crossRefEntries(result.favNames, response.data);
                             for (const [entryIndex, entry] of response.data.entries()) {
