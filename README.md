@@ -9,15 +9,9 @@ Spark Logger is a Chrome extension for easier and more efficient food tracking o
 The extension acts as an alternative to the *Favorites* tab, which only allows food to be logged one at a time, and enables simultaneous logging of multiple foods.
 <br></br>
 
-<div style="display: inline-block; width:49%; text-align: center">
-  <p><b>Before</b></p>
-  <img src="images/before.gif" />
-</div>
-<div style="display: inline-block; width:49%; text-align: center">
-  <p><b>After</b></p>
-  <img src="images/after.gif" />
-</div> 
-<br></br>
+Before | After
+:-:|:-:
+![](images/before.gif) | ![](images/after.gif)
 
 ## Features
 - Simultaneous multi-entry logging
@@ -36,7 +30,7 @@ The extension acts as an alternative to the *Favorites* tab, which only allows f
       - :white_check_mark:: all good!
 4. Click the **Log entries!** button to find and log the foods in Favorites
 
-<img src="images/usage.gif" width="400"/>
+![](images/usage.gif)
 
 ## Installation
  :construction: *Version 1.0 is currently under development, but is scheduled for publishing to the Chrome Web Store in October 2020*
