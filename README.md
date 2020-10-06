@@ -33,7 +33,7 @@ Before | After
 ![](images/usage.gif)
 
 ## Installation
- :construction: *Version 1.0 is currently under development, but is scheduled for publishing to the Chrome Web Store in October 2020*
+:hourglass_flowing_sand: *Version 1.0 is currently pending review*
 
 ## Development
 1. Clone this repo
