@@ -33,7 +33,7 @@ Before | After
 ![](images/usage.gif)
 
 ## Installation
-:hourglass_flowing_sand: *Version 1.0 is currently pending review*
+:rocket: Version 1.0 is live on the Chrome Web Store! You can find it [here](https://chrome.google.com/webstore/detail/spark-logger/lpppdeadccdckckcllnoeadmikncejlo).
 
 ## Development
 1. Clone this repo
