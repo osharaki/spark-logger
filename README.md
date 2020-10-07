@@ -21,7 +21,7 @@ Before | After
 
 ## Usage
 1. Visit https://www.sparkpeople.com/myspark/nutrition.asp (A Sparkpeople account is required)
-2. Click the extension icon
+2. Click the extension icon ![](images/SL-Logo_16.png)
 3. Enter food name followed by amount (the unit defaults to grams), then hit **Enter** 
     * Multiple entries can also be pasted in (each entry must be on a separate line)
     * Check Favorites warnings:
