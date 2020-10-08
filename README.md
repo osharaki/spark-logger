@@ -51,3 +51,6 @@ Parser tests can be executed by running `npm run test`
 ## Notice of Non-Affiliation and Disclaimer
 Spark Logger is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Sparkpeople, Inc, or any of its subsidiaries or its affiliates.
 The name Sparkpeople as well as related names, marks, emblems and images are registered trademarks of their respective owners.
+
+---
+Spark Logger logo assets provided by freepik.com.
