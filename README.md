@@ -13,6 +13,9 @@ Before | After
 :-:|:-:
 ![](images/before.gif) | ![](images/after.gif)
 
+## Installation
+:rocket: Version 1.0 is live on the Chrome Web Store! You can find it [here](https://chrome.google.com/webstore/detail/spark-logger/lpppdeadccdckckcllnoeadmikncejlo).
+
 ## Features
 - Simultaneous multi-entry logging
 - Live, visual warnings
@@ -31,9 +34,6 @@ Before | After
 4. Click the **Log entries!** button to find and log the foods in Favorites
 
 ![](images/usage.gif)
-
-## Installation
-:rocket: Version 1.0 is live on the Chrome Web Store! You can find it [here](https://chrome.google.com/webstore/detail/spark-logger/lpppdeadccdckckcllnoeadmikncejlo).
 
 ## Development
 1. Clone this repo
