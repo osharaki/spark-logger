@@ -41,4 +41,4 @@ Spark Logger is not affiliated, associated, authorized, endorsed by, or in any w
 The name Sparkpeople as well as related names, marks, emblems and images are registered trademarks of their respective owners.
 
 ---
-Spark Logger logo assets provided by freepik.com.
+Spark Logger logo assets are provided by freepik.com.
