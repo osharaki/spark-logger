@@ -30,7 +30,7 @@ Before | After
     * Check Favorites warnings:
       - :question:: no matching food in favorites
       - :exclamation:: food has multiple matches in favorites
-      - :white_check_mark:: all good!
+      - ✅: all good!
 4. Click the **Log entries!** button to find and log the foods in Favorites
 
 ![](images/usage.gif)
