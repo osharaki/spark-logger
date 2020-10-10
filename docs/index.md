@@ -1,37 +1,43 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/osharaki/spark-logger/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+<p align="center">
+  <img src="../images/SL-Logo_Preview.png" width="150"/>
+</p>
+<h1 align="center">Spark Logger</h1>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Spark Logger is a Chrome extension for easier and more efficient food tracking on [Sparkpeople.com](https://www.sparkpeople.com).
 
-### Markdown
+The extension acts as an alternative to the *Favorites* tab, which only allows food to be logged one at a time, and enables simultaneous logging of multiple foods.
+<br></br>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Before | After
+:-:|:-:
+![](../images/before.gif) | ![](../images/after.gif)
 
-```markdown
-Syntax highlighted code block
+## Installation
+:rocket: Version 1.0 is live on the Chrome Web Store! You can find it [here](https://chrome.google.com/webstore/detail/spark-logger/lpppdeadccdckckcllnoeadmikncejlo).
 
-# Header 1
-## Header 2
-### Header 3
+## Features
+- Simultaneous multi-entry logging
+- Live, visual warnings
+### Upcoming
+- Specifying units
 
-- Bulleted
-- List
+## Usage
+1. Visit https://www.sparkpeople.com/myspark/nutrition.asp (A Sparkpeople account is required)
+2. Click the extension icon ![](../images/SL-Logo_16.png)
+3. Enter food name followed by amount (the unit defaults to grams), then hit **Enter** 
+    * Multiple entries can also be pasted in (each entry must be on a separate line)
+    * Check Favorites warnings:
+      - :question:: no matching food in favorites
+      - :exclamation:: food has multiple matches in favorites
+      - :white_check_mark:: all good!
+4. Click the **Log entries!** button to find and log the foods in Favorites
 
-1. Numbered
-2. List
+![](../images/usage.gif)
 
-**Bold** and _Italic_ and `Code` text
+## Notice of Non-Affiliation and Disclaimer
+Spark Logger is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Sparkpeople, Inc, or any of its subsidiaries or its affiliates.
+The name Sparkpeople as well as related names, marks, emblems and images are registered trademarks of their respective owners.
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/osharaki/spark-logger/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+---
+Spark Logger logo assets provided by freepik.com.
