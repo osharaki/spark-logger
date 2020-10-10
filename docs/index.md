@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/osharaki/spark-logger/master/images//SL-Logo_Preview.png" width="150"/>
+  <img src="https://raw.githubusercontent.com/osharaki/spark-logger/master/images/SL-Logo_Preview.png" width="150"/>
 </p>
 <h1 align="center">Spark Logger</h1>
 
@@ -19,12 +19,13 @@ Before | After
 ## Features
 - Simultaneous multi-entry logging
 - Live, visual warnings
+
 ### Upcoming
 - Specifying units
 
 ## Usage
 1. Visit https://www.sparkpeople.com/myspark/nutrition.asp (A Sparkpeople account is required)
-2. Click the extension icon ![](https://raw.githubusercontent.com/osharaki/spark-logger/master/images//SL-Logo_16.png)
+2. Click the extension icon ![](https://raw.githubusercontent.com/osharaki/spark-logger/master/images/SL-Logo_16.png)
 3. Enter food name followed by amount (the unit defaults to grams), then hit **Enter** 
     * Multiple entries can also be pasted in (each entry must be on a separate line)
     * Check Favorites warnings:
@@ -33,7 +34,7 @@ Before | After
       - ✅: all good!
 4. Click the **Log entries!** button to find and log the foods in Favorites
 
-![](images/usage.gif)
+![](https://raw.githubusercontent.com/osharaki/spark-logger/master/images/usage.gif)
 
 ## Notice of Non-Affiliation and Disclaimer
 Spark Logger is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Sparkpeople, Inc, or any of its subsidiaries or its affiliates.
