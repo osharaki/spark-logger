@@ -33,7 +33,7 @@ Before | After
       - :white_check_mark:: all good!
 4. Click the **Log entries!** button to find and log the foods in Favorites
 
-![](images/usage.gif)
+![](../images/usage.gif)
 
 ## Notice of Non-Affiliation and Disclaimer
 Spark Logger is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Sparkpeople, Inc, or any of its subsidiaries or its affiliates.
