@@ -1,6 +1,6 @@
 {
     "name": "Spark Logger",
-    "version": "1.0",
+    "version": "1.1.0",
     "description": "A Chrome extension for easier and more efficient food tracking on Sparkpeople.com.",
     "permissions": [
         "declarativeContent",
