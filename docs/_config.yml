@@ -1,2 +1,4 @@
 title: Spark Logger
 theme: jekyll-theme-cayman
+plugins:
+    - jemoji
